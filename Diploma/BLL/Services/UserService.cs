@@ -4,7 +4,6 @@ using BLL.Interfaces;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using System.Security.Claims;
-using BLL.Interfaces;
 using DAL.Interfaces;
 using DAL.Entities;
 using System.Collections.Generic;
