@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{2A9FFAFB-1FED-46BA-8D9A-A14B61AF50AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMenu.DAL", "MyMenu.DAL\MyMenu.DAL.csproj", "{2A9FFAFB-1FED-46BA-8D9A-A14B61AF50AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{19117F59-2F17-438E-9F7A-36FB7F8CD2FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMenu.BLL", "MyMenu.BLL\MyMenu.BLL.csproj", "{19117F59-2F17-438E-9F7A-36FB7F8CD2FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL\PL.csproj", "{2F7F6E56-0C7E-4BD0-A350-26A399D7A5C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMenu.WEB", "MyMenu.WEB\MyMenu.WEB.csproj", "{2F7F6E56-0C7E-4BD0-A350-26A399D7A5C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser", "Parser\Parser.csproj", "{BF69A8EC-114B-4ABD-A958-C946A28FE075}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMenu.Parser", "MyMenu.Parser\MyMenu.Parser.csproj", "{BF69A8EC-114B-4ABD-A958-C946A28FE075}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
