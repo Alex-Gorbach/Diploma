@@ -57,10 +57,9 @@
     <Compile Include="Entities\ApplicationRole.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\ClientProfile.cs" />
-    <Compile Include="Entities\ProductRecipie.cs" />
+    <Compile Include="Entities\RecipieProduct.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Recipie.cs" />
-    <Compile Include="Entities\Units.cs" />
     <Compile Include="Identity\ApplicationRoleManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Interfaces\IClientManager.cs" />
