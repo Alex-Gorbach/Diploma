@@ -1,21 +1,19 @@
 ﻿using AngleSharp.Parser.Html;
 using System;
 
-
-namespace MyMenu.Parser.Core
+namespace WindowsFormsApp1.Core
 {
-    class ParserWorcker<T> where T : class
+    class ParserWorcker<T> where T:class
     {
         IParser<T> parser;
         IParserSettings parserSettings;
 
         HtmlLoader loader;
         bool isActive;
-
+ 
         #region Properties
 
-        public IParser<T> Parser
-        {
+        public IParser<T> Parser {
 
             get
             {
@@ -25,7 +23,7 @@ namespace MyMenu.Parser.Core
             {
                 parser = value;
             }
-
+                
         }
 
         public IParserSettings Settings
@@ -59,10 +57,10 @@ namespace MyMenu.Parser.Core
             this.parser = parser;
         }
 
-        public ParserWorcker(IParser<T> parser, IParserSettings parserSettings) : this(parser)
+        public ParserWorcker(IParser<T> parser,IParserSettings parserSettings):this(parser)
         {
             this.parserSettings = parserSettings;
-        }
+        }   
 
         public void Start()
         {
@@ -90,8 +88,8 @@ namespace MyMenu.Parser.Core
 
                 var document = await domParser.ParseAsync(source);
 
-                var result = parser.Parse(document);
-                OnNewData?.Invoke(this, result);
+                var result=parser.Parse(document);
+                    OnNewData?.Invoke(this, result);
 
             }
             OnCompleted?.Invoke(this);

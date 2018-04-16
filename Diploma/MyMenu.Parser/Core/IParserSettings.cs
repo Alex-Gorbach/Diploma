@@ -1,5 +1,5 @@
 ﻿
-namespace MyMenu.Parser.Core
+namespace WindowsFormsApp1.Core
 {
     interface IParserSettings
     {
@@ -9,5 +9,8 @@ namespace MyMenu.Parser.Core
 
         int StartPoint { get; set; }
         int EndPoint { get; set; }
+
+
+
     }
 }

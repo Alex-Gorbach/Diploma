@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace MyMenu.Parser.Core
+namespace WindowsFormsApp1.Core
 {
     class HtmlLoader
     {
@@ -12,7 +12,7 @@ namespace MyMenu.Parser.Core
         public HtmlLoader(IParserSettings settings)
         {
             client = new HttpClient();
-            url = $"{settings.BaseUrl}/{settings.Prefix}/";
+            url = $"{settings.BaseUrl}{settings.Prefix}";
         }
 
         public async Task<string> GetSourceByPageId(int id)
@@ -21,9 +21,9 @@ namespace MyMenu.Parser.Core
             var response = await client.GetAsync(currentUrl);
             string source = null;
 
-            if (response != null && response.StatusCode == HttpStatusCode.OK)
+            if (response!=null && response.StatusCode==HttpStatusCode.OK)
             {
-                source = await response.Content.ReadAsStringAsync();
+                source =await response.Content.ReadAsStringAsync();
             }
 
             return source;

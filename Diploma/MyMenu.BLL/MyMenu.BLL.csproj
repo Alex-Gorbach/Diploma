@@ -68,7 +68,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MyMenu.DAL\MyMenu.DAL.csproj">
       <Project>{2a9ffafb-1fed-46ba-8d9a-a14b61af50aa}</Project>
-      <Name>DAL</Name>
+      <Name>MyMenu.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

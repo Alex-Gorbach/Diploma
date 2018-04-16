@@ -1,8 +1,8 @@
 ﻿using AngleSharp.Dom.Html;
 
-namespace MyMenu.Parser.Core
+namespace WindowsFormsApp1.Core
 {
-    interface IParser<T> where T : class
+    public interface IParser<T>where T:class
     {
         T Parse(IHtmlDocument document);
     }

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMenu.BLL", "MyMenu.BLL\My
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMenu.WEB", "MyMenu.WEB\MyMenu.WEB.csproj", "{2F7F6E56-0C7E-4BD0-A350-26A399D7A5C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMenu.Parser", "MyMenu.Parser\MyMenu.Parser.csproj", "{BF69A8EC-114B-4ABD-A958-C946A28FE075}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMenu.Parser", "C:\Users\Alex\Desktop\WindowsFormsApp1\WindowsFormsApp1\MyMenu.Parser.csproj", "{BD48848D-FE88-4889-BD31-5972CED66E86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{2F7F6E56-0C7E-4BD0-A350-26A399D7A5C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F7F6E56-0C7E-4BD0-A350-26A399D7A5C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F7F6E56-0C7E-4BD0-A350-26A399D7A5C4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BF69A8EC-114B-4ABD-A958-C946A28FE075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF69A8EC-114B-4ABD-A958-C946A28FE075}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF69A8EC-114B-4ABD-A958-C946A28FE075}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF69A8EC-114B-4ABD-A958-C946A28FE075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD48848D-FE88-4889-BD31-5972CED66E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD48848D-FE88-4889-BD31-5972CED66E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD48848D-FE88-4889-BD31-5972CED66E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD48848D-FE88-4889-BD31-5972CED66E86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

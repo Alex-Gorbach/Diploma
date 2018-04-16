@@ -12,18 +12,10 @@ namespace MyMenu.DAL.EF
         public DbSet<Product> Products { get; set; }
         public DbSet<Recipie> Recipies { get; set; }
         public DbSet<RecipieProduct> RecipiesProducts { get; set; }
-        public DbSet<Unit> Units { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Recipie>().HasMany<Product>(s => s.Products)
-                .WithMany(c => c.Recipies).Map(cs =>
-                  {
-                      cs.MapLeftKey("RecipieId");
-                      cs.MapRightKey("ProductId");
-                      cs.ToTable("RecipieProduct");
-                  });
         }
     }
 }

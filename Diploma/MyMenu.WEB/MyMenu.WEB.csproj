@@ -250,7 +250,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MyMenu.BLL\MyMenu.BLL.csproj">
       <Project>{19117f59-2f17-438e-9f7a-36fb7f8cd2ff}</Project>
-      <Name>BLL</Name>
+      <Name>MyMenu.BLL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
