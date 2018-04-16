@@ -8,11 +8,11 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
 
-        ParserWorcker<string[]> parser;
+        ParserWorker<string[]> parser;
         public Form1()
         {
             InitializeComponent();
-            parser = new ParserWorcker<string[]>(
+            parser = new ParserWorker<string[]>(
                 new RecipeParser()
                 );
             parser.OnCompleted += Parser_OnComplated;
@@ -31,6 +31,7 @@ namespace WindowsFormsApp1
 
         private void ButtonStart_Click(object sender, EventArgs e)
         {
+            ListTitles.Items.Clear();
             parser.Settings=new RecipieSettings((int)NumericStart.Value,(int)NumericEnd.Value);
             parser.Start();
         }

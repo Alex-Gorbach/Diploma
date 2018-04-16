@@ -51,7 +51,10 @@
     <Compile Include="Core\HtmlLoader.cs" />
     <Compile Include="Core\IParser.cs" />
     <Compile Include="Core\IParserSettings.cs" />
-    <Compile Include="Core\ParserWorcker.cs" />
+    <Compile Include="Core\ParserWorker.cs" />
+    <Compile Include="Core\Recepies\RecipeModel.cs" />
+    <Compile Include="Core\Servise\IService.cs" />
+    <Compile Include="Core\Servise\Servise.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

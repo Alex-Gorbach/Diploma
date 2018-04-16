@@ -3,7 +3,7 @@ using System;
 
 namespace WindowsFormsApp1.Core
 {
-    class ParserWorcker<T> where T:class
+    class ParserWorker<T> where T:class
     {
         IParser<T> parser;
         IParserSettings parserSettings;
@@ -52,12 +52,12 @@ namespace WindowsFormsApp1.Core
         public event Action<object, T> OnNewData;
         public event Action<object> OnCompleted;
 
-        public ParserWorcker(IParser<T> parser)
+        public ParserWorker(IParser<T> parser)
         {
             this.parser = parser;
         }
 
-        public ParserWorcker(IParser<T> parser,IParserSettings parserSettings):this(parser)
+        public ParserWorker(IParser<T> parser,IParserSettings parserSettings):this(parser)
         {
             this.parserSettings = parserSettings;
         }   
@@ -87,17 +87,18 @@ namespace WindowsFormsApp1.Core
                 var domParser = new HtmlParser();
 
                 var document = await domParser.ParseAsync(source);
+                var result=parser.ParseHref(document);
                
-                var result=parser.Parse(document);
 
-                
-
-               // var pageSource = await loader.GetRecipeByPageHref();
-               //  var recipeDocument = await domParser.ParseAsync();
+                var recipeSource = await loader.GetRecipeByPageHref("https://arborio.ru/drozhzhevoe-testo-dlya-pirozhkov/");
+                var recipeDocument = await domParser.ParseAsync(recipeSource);
+                var resulRecipe = parser.ParseData(recipeDocument);
 
                 OnNewData?.Invoke(this, result);
 
             }
+            
+        
             OnCompleted?.Invoke(this);
             isActive = false;
         }
