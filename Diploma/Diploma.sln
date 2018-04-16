@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMenu.BLL", "MyMenu.BLL\My
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMenu.WEB", "MyMenu.WEB\MyMenu.WEB.csproj", "{2F7F6E56-0C7E-4BD0-A350-26A399D7A5C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMenu.Parser", "C:\Users\Alex\Desktop\WindowsFormsApp1\WindowsFormsApp1\MyMenu.Parser.csproj", "{BD48848D-FE88-4889-BD31-5972CED66E86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMenu.Parser", "MyMenu.Parser\MyMenu.Parser.csproj", "{BD48848D-FE88-4889-BD31-5972CED66E86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

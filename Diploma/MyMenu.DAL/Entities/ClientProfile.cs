@@ -6,8 +6,7 @@ namespace MyMenu.DAL.Entities
     public class ClientProfile
     {
         [Key]
-        [ForeignKey("ApplicationContext")]
-
+        [ForeignKey("ApplicationUser")]
         public string Id { get; set; }
 
         public string Name { get; set; }

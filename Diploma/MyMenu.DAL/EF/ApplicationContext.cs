@@ -4,18 +4,14 @@ using MyMenu.DAL.Entities;
 
 namespace MyMenu.DAL.EF
 {
-    public class ApplicationContext:IdentityDbContext<ApplicationUser>
+    public class ApplicationContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationContext(string conectionString) : base(conectionString) { }
+        public ApplicationContext(string conectionString) : base("MyMenyContext") { }
 
         public DbSet<ClientProfile> ClientProfiles { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Recipie> Recipies { get; set; }
         public DbSet<RecipieProduct> RecipiesProducts { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
+       
     }
 }

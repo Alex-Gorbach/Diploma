@@ -87,9 +87,15 @@ namespace WindowsFormsApp1.Core
                 var domParser = new HtmlParser();
 
                 var document = await domParser.ParseAsync(source);
-
+               
                 var result=parser.Parse(document);
-                    OnNewData?.Invoke(this, result);
+
+                
+
+               // var pageSource = await loader.GetRecipeByPageHref();
+               //  var recipeDocument = await domParser.ParseAsync();
+
+                OnNewData?.Invoke(this, result);
 
             }
             OnCompleted?.Invoke(this);

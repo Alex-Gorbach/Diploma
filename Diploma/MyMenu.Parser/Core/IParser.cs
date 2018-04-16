@@ -7,3 +7,4 @@ namespace WindowsFormsApp1.Core
         T Parse(IHtmlDocument document);
     }
 }
+

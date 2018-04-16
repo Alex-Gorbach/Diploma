@@ -3,9 +3,9 @@ using System.Linq;
 using AngleSharp.Dom.Html;
 using WindowsFormsApp1.Core;
 
-namespace WindowsFormsApp1.Habra
+namespace WindowsFormsApp1.Recepies
 {
-    class HabraParser : IParser<string[]>
+    class RecipeParser : IParser<string[]>
     {
         public string[] Parse(IHtmlDocument document)
         {

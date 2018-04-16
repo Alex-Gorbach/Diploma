@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using WindowsFormsApp1.Core;
-using WindowsFormsApp1.Habra;
+using WindowsFormsApp1.Recepies;
 
 namespace WindowsFormsApp1
 {
@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             parser = new ParserWorcker<string[]>(
-                new HabraParser()
+                new RecipeParser()
                 );
             parser.OnCompleted += Parser_OnComplated;
             parser.OnNewData += Parser_OnNewData;
@@ -31,7 +31,7 @@ namespace WindowsFormsApp1
 
         private void ButtonStart_Click(object sender, EventArgs e)
         {
-            parser.Settings=new HabraSettings((int)NumericStart.Value,(int)NumericEnd.Value);
+            parser.Settings=new RecipieSettings((int)NumericStart.Value,(int)NumericEnd.Value);
             parser.Start();
         }
 

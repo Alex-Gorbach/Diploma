@@ -1,15 +1,14 @@
 ﻿using WindowsFormsApp1.Core;
 
-namespace WindowsFormsApp1.Habra
+namespace WindowsFormsApp1.Recepies
 {
-    class HabraSettings : IParserSettings
+    class RecipieSettings : IParserSettings
     {
-        public RecipiesSettings(int start, int end)
+        public RecipieSettings(int start, int end)
         {
             StartPoint = start;
             EndPoint = end;
         }
-
 
         public string BaseUrl { get; set; } = "https://arborio.ru/recepty/";
         public string Prefix { get; set; } = "page/{CurrentId}";
@@ -17,3 +16,4 @@ namespace WindowsFormsApp1.Habra
         public int EndPoint { get; set; }
     }
 }
+    

@@ -58,8 +58,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\Habra\HabraParser.cs" />
-    <Compile Include="Core\Habra\HabraSettings.cs" />
+    <Compile Include="Core\Recepies\RecipeParser.cs" />
+    <Compile Include="Core\Recepies\RecipieSettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
