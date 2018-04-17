@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyMenu.DAL.Entities
+﻿namespace MyMenu.DAL.Entities
 {
-    public class Recipie
+    public class Recipe
     {
         public string Id { get; set; }
         public string Name { get; set; }

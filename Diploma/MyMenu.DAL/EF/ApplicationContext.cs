@@ -10,8 +10,8 @@ namespace MyMenu.DAL.EF
 
         public DbSet<ClientProfile> ClientProfiles { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Recipie> Recipies { get; set; }
-        public DbSet<RecipieProduct> RecipiesProducts { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<RecipeProduct> RecipesProducts { get; set; }
        
     }
 }

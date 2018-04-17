@@ -4,11 +4,11 @@ using WindowsFormsApp1.Core.Recepies;
 
 namespace WindowsFormsApp1.Core.Servise
 {
-    public class Servise:IService<List<string>>
+    public class ParserServise:IService
     {
+
         public List<string> SetColllection(List<string> destionation, IEnumerable<IElement> source)
         {
-           
 
             foreach (var item in source)
             {
@@ -23,7 +23,6 @@ namespace WindowsFormsApp1.Core.Servise
             recipeModel.Products = new List<string>();
             recipeModel.Units = new List<string>();
         }
-
-        
+     
     }
 }

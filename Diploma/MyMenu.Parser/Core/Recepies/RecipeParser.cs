@@ -12,7 +12,7 @@ namespace WindowsFormsApp1.Recepies
         public RecipeModel ParseData(IHtmlDocument document)
         {
             var recipeModel = new RecipeModel();
-            var service = new Servise();
+            var service = new ParserServise();
             service.InitCollection(recipeModel);
             
             var items = document.QuerySelectorAll("h1")
@@ -39,8 +39,8 @@ namespace WindowsFormsApp1.Recepies
             service.SetColllection(recipeModel.Products, products);
 
             var unitType = document.QuerySelectorAll("span")
-                  .Where(item => item.ClassName != null
-                && item.ClassName.Contains("type") 
+                  .Where(item => item.ClassName != null 
+                  && item.ClassName.Contains("type")
                );
             service.SetColllection(recipeModel.Units, unitType);
 

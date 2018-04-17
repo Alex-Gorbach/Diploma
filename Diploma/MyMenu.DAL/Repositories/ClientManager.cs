@@ -16,6 +16,7 @@ namespace MyMenu.DAL.Repositories
         {
             Database.ClientProfiles.Add(item);
             Database.SaveChanges();
+            
         }
 
         public void Dispose()

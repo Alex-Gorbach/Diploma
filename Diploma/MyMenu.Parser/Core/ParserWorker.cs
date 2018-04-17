@@ -1,5 +1,6 @@
 ﻿using AngleSharp.Parser.Html;
 using System;
+using WindowsFormsApp1.Core.Servise;
 
 namespace WindowsFormsApp1.Core
 {
@@ -88,12 +89,18 @@ namespace WindowsFormsApp1.Core
 
                 var document = await domParser.ParseAsync(source);
                 var result=parser.ParseHref(document);
-               
 
-                var recipeSource = await loader.GetRecipeByPageHref("https://arborio.ru/drozhzhevoe-testo-dlya-pirozhkov/");
-                var recipeDocument = await domParser.ParseAsync(recipeSource);
-                var resulRecipe = parser.ParseData(recipeDocument);
+                string[] resultHref = result as string[];
 
+                
+
+              
+                    var recipeSource = await loader.GetRecipeByPageHref(resultHref[i]);
+                    var recipeDocument = await domParser.ParseAsync(recipeSource);
+                    var resulRecipe = parser.ParseData(recipeDocument);
+                
+
+                
                 OnNewData?.Invoke(this, result);
 
             }

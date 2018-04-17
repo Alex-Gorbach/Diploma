@@ -5,6 +5,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Threading.Tasks;
 using MyMenu.DAL.Identity;
+using DAL.Repositories;
+using DAL.Interfaces;
 
 namespace MyMenu.DAL.Repositories
 {
@@ -15,6 +17,9 @@ namespace MyMenu.DAL.Repositories
         private ApplicationUserManager userManager;
         private ApplicationRoleManager roleManager;
         private IClientManager clientManager;
+        private IRecipeManager recipeManager;
+        private IProductManager productManager;
+        private IRecipeProductManager recipeProductManager;
 
         public IdentityUnitOfWork(string connectionString)
         {
@@ -22,6 +27,9 @@ namespace MyMenu.DAL.Repositories
             userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
             roleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(db));
             clientManager = new ClientManager(db);
+            recipeManager = new RecipeManager(db);
+            productManager=new ProductManager(db);
+            recipeProductManager=new RecipeProductManager(db);
         }
 
         public ApplicationUserManager UserManager
@@ -37,6 +45,20 @@ namespace MyMenu.DAL.Repositories
         public ApplicationRoleManager RoleManager
         {
             get { return roleManager; }
+        }
+
+        public IProductManager ProductManager
+        {
+            get { return productManager; }
+        }
+
+        public IRecipeManager RecipeManager
+        {
+            get { return recipeManager; }
+        }
+        public IRecipeProductManager RecipeProductManager
+        {
+            get { return recipeProductManager; }
         }
 
         public async Task SaveAsync()
@@ -60,6 +82,9 @@ namespace MyMenu.DAL.Repositories
                     userManager.Dispose();
                     roleManager.Dispose();
                     clientManager.Dispose();
+                    recipeManager.Dispose();
+                    productManager.Dispose();
+                    recipeProductManager.Dispose();
                 }
                 this.disposed = true;
             }

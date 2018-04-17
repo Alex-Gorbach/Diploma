@@ -53,8 +53,9 @@
     <Compile Include="Core\IParserSettings.cs" />
     <Compile Include="Core\ParserWorker.cs" />
     <Compile Include="Core\Recepies\RecipeModel.cs" />
+    <Compile Include="Core\Servise\DataServise.cs" />
     <Compile Include="Core\Servise\IService.cs" />
-    <Compile Include="Core\Servise\Servise.cs" />
+    <Compile Include="Core\Servise\ParserServise.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +91,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyMenu.DAL\MyMenu.DAL.csproj">
+      <Project>{2a9ffafb-1fed-46ba-8d9a-a14b61af50aa}</Project>
+      <Name>MyMenu.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

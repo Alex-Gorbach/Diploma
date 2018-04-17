@@ -1,4 +1,5 @@
-﻿using MyMenu.DAL.Identity;
+﻿using DAL.Interfaces;
+using MyMenu.DAL.Identity;
 using System;
 using System.Threading.Tasks;
 
@@ -8,6 +9,9 @@ namespace MyMenu.DAL.Interfaces
     {
         ApplicationUserManager UserManager { get; }
         IClientManager ClientManager { get; }
+        IProductManager ProductManager { get; }
+        IRecipeManager RecipeManager { get; }
+        IRecipeProductManager RecipeProductManager { get; }
         ApplicationRoleManager RoleManager { get; }
         Task SaveAsync();
     }
