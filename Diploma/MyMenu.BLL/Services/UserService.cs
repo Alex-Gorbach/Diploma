@@ -72,6 +72,17 @@ namespace MyMenu.BLL.Services
         {
             Database.Dispose();
         }
+
+        public List<string> GetAllRecipesName()
+        {
+            var list = new List<string>();
+            var result = Database.RecipeManager.GetAllRepicesName();
+            foreach (var item in result)
+            {
+                list.Add(item.Name);
+            }
+            return list;
+        }
     }
 
 

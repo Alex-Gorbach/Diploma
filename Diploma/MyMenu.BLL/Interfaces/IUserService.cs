@@ -12,5 +12,7 @@ namespace MyMenu.BLL.Interfaces
         Task<OperationDetails> Create(UserDTO userDto);
         Task<ClaimsIdentity> Authenticate(UserDTO userDto);
         Task SetInitialData(UserDTO adminDto, List<string> roles);
+
+        List<string> GetAllRecipesName();
     }
 }

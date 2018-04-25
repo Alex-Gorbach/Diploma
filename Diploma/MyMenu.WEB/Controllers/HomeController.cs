@@ -16,6 +16,7 @@ namespace MyMenu.WEB.Controllers
         }
         public ActionResult Index()
         {
+            //ViewBag.Recipes = UserService.GetAllRecipesName();
             return View();
         }
 

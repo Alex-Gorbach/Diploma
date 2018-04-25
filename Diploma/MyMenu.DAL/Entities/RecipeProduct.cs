@@ -1,14 +1,20 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyMenu.DAL.Entities
 {
     public class RecipeProduct
     {
-        public string Id { get; set; }
-        public double Number { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
-        public virtual ICollection<Recipe> Recipes { get; set; }
+        [Key,Column(Order=1)]
+        public int ProductId { get; set; }
+
+        [Key, Column(Order = 2)]
+        public int RecipeId { get; set; }
+
+        public string Number { get; set; }
+
     }
 
 }

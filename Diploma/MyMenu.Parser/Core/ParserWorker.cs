@@ -1,5 +1,6 @@
 ﻿using AngleSharp.Parser.Html;
 using System;
+using System.Threading.Tasks;
 using WindowsFormsApp1.Core.Servise;
 
 namespace WindowsFormsApp1.Core
@@ -8,7 +9,7 @@ namespace WindowsFormsApp1.Core
     {
         IParser<T> parser;
         IParserSettings parserSettings;
-
+        DataServise dataServise = new DataServise();
         HtmlLoader loader;
         bool isActive;
  
@@ -89,22 +90,22 @@ namespace WindowsFormsApp1.Core
 
                 var document = await domParser.ParseAsync(source);
                 var result=parser.ParseHref(document);
-
-                string[] resultHref = result as string[];
-
                 
+                var resultHref = result as string[];
 
-              
-                    var recipeSource = await loader.GetRecipeByPageHref(resultHref[i]);
+                for(int j=0;j< resultHref.Length;j++)
+                {
+                    var recipeSource = await loader.GetRecipeByPageHref(resultHref[j]);
                     var recipeDocument = await domParser.ParseAsync(recipeSource);
                     var resulRecipe = parser.ParseData(recipeDocument);
+                    await dataServise.Create(resulRecipe);
+                }
                 
 
-                
+
                 OnNewData?.Invoke(this, result);
 
             }
-            
         
             OnCompleted?.Invoke(this);
             isActive = false;
