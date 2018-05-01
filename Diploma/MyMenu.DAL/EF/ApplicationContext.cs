@@ -6,7 +6,7 @@ namespace MyMenu.DAL.EF
 {
     public class ApplicationContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationContext(string conectionString) : base("MyMenyContext") { }
+        public ApplicationContext(string conectionString) : base("MyMenuContext") { }
 
         public DbSet<ClientProfile> ClientProfiles { get; set; }
         public DbSet<Product> Products { get; set; }

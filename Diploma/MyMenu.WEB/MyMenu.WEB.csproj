@@ -232,6 +232,10 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\SuccessRegister.cshtml" />
+    <Content Include="Views\Home\Recipe.cshtml" />
+    <Content Include="Views\Account\Update.cshtml" />
+    <Content Include="Views\Account\UsersProfile.cshtml" />
+    <Content Include="Views\Home\SearchRecipe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

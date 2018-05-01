@@ -2,6 +2,8 @@
 using Microsoft.AspNet.Identity.Owin;
 using System.Web;
 using System.Web.Mvc;
+using BLL.DTO;
+using System.Collections.Generic;
 
 namespace MyMenu.WEB.Controllers
 {
@@ -14,13 +16,20 @@ namespace MyMenu.WEB.Controllers
                 return HttpContext.GetOwinContext().GetUserManager<IUserService>();
             }
         }
+ 
         public ActionResult Index()
         {
-            //ViewBag.Recipes = UserService.GetAllRecipesName();
+            var result = UserService.GetAllRecipes();
+
+            return View(result);
+        }
+
+        public ActionResult SearchRecipe()
+        {
             return View();
         }
 
-       
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -32,6 +41,11 @@ namespace MyMenu.WEB.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Recipe()
+        {
             return View();
         }
     }

@@ -39,11 +39,11 @@ namespace DAL.Repositories
             return list;
         }
 
-        public List<Recipe> GetAllRepicesName()
+        public List<Recipe> GetAllRepices()
         {
             var list = new List<Recipe>();
-            var rusult = Database.Recipes.Where(x => x.Name!="");
-            foreach (var item in rusult)
+            var result = Database.Recipes.Where(x => x.Name !="");
+            foreach (var item in result)
             {
                 list.Add(item);
             }

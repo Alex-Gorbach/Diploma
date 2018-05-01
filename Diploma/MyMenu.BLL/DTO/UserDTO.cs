@@ -1,4 +1,4 @@
-﻿namespace MyMenu.BLL.DTO
+﻿namespace BLL.DTO
 {
     public class UserDTO
     {

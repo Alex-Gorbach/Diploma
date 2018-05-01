@@ -1,4 +1,4 @@
-﻿using MyMenu.BLL.DTO;
+﻿using BLL.DTO;
 using MyMenu.BLL.Infrastructure;
 using MyMenu.BLL.Interfaces;
 using System.Threading.Tasks;
@@ -8,7 +8,7 @@ using MyMenu.DAL.Interfaces;
 using MyMenu.DAL.Entities;
 using System.Collections.Generic;
 using System.Linq;
-
+using AutoMapper;
 
 namespace MyMenu.BLL.Services
 {
@@ -68,20 +68,31 @@ namespace MyMenu.BLL.Services
             await Create(adminDto);
         }
 
+
         public void Dispose()
         {
             Database.Dispose();
         }
 
-        public List<string> GetAllRecipesName()
+
+
+        public List<RecipeDTO> GetAllRecipes()
         {
-            var list = new List<string>();
-            var result = Database.RecipeManager.GetAllRepicesName();
-            foreach (var item in result)
-            {
-                list.Add(item.Name);
-            }
-            return list;
+
+            var result = Database.RecipeManager.GetAllRepices();
+            Mapper.Initialize(cfg => cfg.CreateMap<Recipe,RecipeDTO>());
+            var recipes = Mapper.Map<List<Recipe>,List<RecipeDTO>>(result);
+           
+            return recipes;
+        }
+
+        public async Task<UserDTO> GetUserByEmail(string email)
+        {
+            var user = new UserDTO();
+            var result =await Database.UserManager.FindByEmailAsync(email);
+            user.Name = result.ClientProfile.Name;
+            
+            return user;
         }
     }
 

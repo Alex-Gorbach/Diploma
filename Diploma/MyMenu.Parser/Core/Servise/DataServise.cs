@@ -18,7 +18,7 @@ namespace WindowsFormsApp1.Core.Servise
         }
         public DataServise()
         {
-            Database = new IdentityUnitOfWork("DefaultConnection");
+            Database = new IdentityUnitOfWork("MyMenuContext");
         }
 
         public async Task Create(RecipeModel recipeModel)
@@ -61,8 +61,8 @@ namespace WindowsFormsApp1.Core.Servise
                     {
                         recipeProduct = new RecipeProduct()
                         {
-                            RecipeId = recipe.Id,
-                            ProductId = products[0].Id,
+                            RecipeId = recipe.RecipeId,
+                            ProductId = products[0].ProductId,
 
                         };
                         if (recipeModel.Units.Count >= i)
@@ -78,8 +78,8 @@ namespace WindowsFormsApp1.Core.Servise
                         
                         recipeProduct = new RecipeProduct()
                         {
-                            RecipeId = recipe.Id,
-                            ProductId = product.Id,
+                            RecipeId = recipe.RecipeId,
+                            ProductId = product.ProductId,
                            
                         };
                             recipeProduct.Number = recipeModel.Number[i];

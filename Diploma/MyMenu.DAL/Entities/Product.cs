@@ -7,7 +7,7 @@ namespace MyMenu.DAL.Entities
     public class Product
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int ProductId { get; set; }
 
         public string Name { get; set; }
         public string Unit { get; set; }

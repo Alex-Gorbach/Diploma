@@ -33,7 +33,7 @@
                     else
                     {
                         <li>
-                            @Html.ActionLink("Hello " + @User.Identity.Name, "Profile", "Account")
+                            @Html.ActionLink("Hello " + @User.Identity.Name, "UsersProfile", "Account", new { email = User.Identity.Name }, null)
                         </li>
                         <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
                     }

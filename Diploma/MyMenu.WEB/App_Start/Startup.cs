@@ -25,7 +25,7 @@ namespace MyMenu.WEB.App_Start
 
         private IUserService CreateUserService()
         {
-            return serviceCreator.CreateUserService("DefaultConnection");
+            return serviceCreator.CreateUserService("MyMenuContext");
         }
     }
 }

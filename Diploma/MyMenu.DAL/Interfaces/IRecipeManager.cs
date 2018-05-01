@@ -8,6 +8,6 @@ namespace DAL.Interfaces
     {
         Recipe Create(Recipe item);
         List<Recipe> FindRecipeByName(string recipeName);
-        List<Recipe> GetAllRepicesName();
+        List<Recipe> GetAllRepices();
     }
 }

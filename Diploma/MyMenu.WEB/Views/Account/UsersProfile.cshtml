@@ -1,0 +1,70 @@
+﻿@model  BLL.DTO.UserDTO
+
+@{
+    ViewBag.Title = "UsersProfile";
+}
+
+<h2>User profile</h2>
+
+<div class="user">
+    <div><img src="~/Content/flat,1000x1000,075,f.u5.jpg" /></div>
+    <div class="usersInfo">
+        <span class="name">@Html.DisplayFor(model=>model.Name) </span>
+        <span class="email">@User.Identity.Name</span>
+    </div>
+    <div class="settings">
+        <input type="submit" value="Edit" />
+        <input type="submit" value="Delete account" />
+    </div>
+    <div class="usersRecipes">
+        <table class="table">
+            <tr>
+
+                <th>
+                    asda
+                </th>
+                <th>
+                    asd
+                </th>
+                <th>
+                    asdasdada
+                </th>
+                <th>
+                    asdasd
+                </th>
+                <th>
+                    asdas
+                </th>
+                <th></th>
+            </tr>
+
+            <tr>
+                <td>
+                    asdasd
+                </td>
+                <td>
+                    asdasd
+                </td>
+                <td>
+                    asdas
+                </td>
+                <td>
+                    asdasd
+                </td>
+                <td>
+                    asdasasd
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+</div>
+
+
+
