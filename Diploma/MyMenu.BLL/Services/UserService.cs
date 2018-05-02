@@ -20,7 +20,7 @@ namespace MyMenu.BLL.Services
         {
             Database = uow;
         }
-
+        
         public async Task<OperationDetails> Create(UserDTO userDto)
         {
             ApplicationUser user = await Database.UserManager.FindByEmailAsync(userDto.Email);
@@ -76,12 +76,27 @@ namespace MyMenu.BLL.Services
 
 
 
-        public List<RecipeDTO> GetAllRecipes()
+        public List<RecipeDTO> GetAllRecipes(int itemsToSkip,int pageSize)
         {
+            var recipesId = new List<int>();
+            List<Product> productsList = new List<Product>();
+            var result = Database.RecipeManager.GetAllRepices(itemsToSkip, pageSize);
+            var recipes = Mapper.Map<List<Recipe>, List<RecipeDTO>>(result);
+            foreach (var item in result)
+            {
+                recipesId.Add(item.RecipeId);
+            }
 
-            var result = Database.RecipeManager.GetAllRepices();
-            Mapper.Initialize(cfg => cfg.CreateMap<Recipe,RecipeDTO>());
-            var recipes = Mapper.Map<List<Recipe>,List<RecipeDTO>>(result);
+            for (int i = 0; i < recipesId.Count; i++)
+            {
+                var products = Database.ProductManager.GetProbuctsById(recipesId[i]);
+                var productsMap = Mapper.Map<List<Product>, List<ProductDTO>>(products);
+                var productCopasity = Database.ProductManager.GetProductsCopasity(recipesId[i]);
+                recipes.ElementAt(i).Products = productsMap;
+                recipes.ElementAt(i).ProductCopasity = productCopasity;
+            }
+            
+            
            
             return recipes;
         }

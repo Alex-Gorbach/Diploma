@@ -195,6 +195,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\flat,1000x1000,075,f.u5.jpg" />
+    <Content Include="Content\loading_spinner.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -236,6 +237,7 @@
     <Content Include="Views\Account\Update.cshtml" />
     <Content Include="Views\Account\UsersProfile.cshtml" />
     <Content Include="Views\Home\SearchRecipe.cshtml" />
+    <Content Include="Views\Home\_Items.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

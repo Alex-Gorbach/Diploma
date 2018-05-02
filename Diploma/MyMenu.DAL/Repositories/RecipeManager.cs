@@ -30,24 +30,16 @@ namespace DAL.Repositories
 
         public List<Recipe> FindRecipeByName(string recipeName)
         {
-            var list = new List<Recipe>();
-            var result = Database.Recipes.Where(x=>x.Name == recipeName);
-            foreach (var item in result)
-            {
-                list.Add(item);
-            }
-            return list;
+            var result = Database.Recipes.Where(x=>x.Name == recipeName).ToList();
+            return result;
         }
 
-        public List<Recipe> GetAllRepices()
+        public List<Recipe> GetAllRepices(int itemsToSkip,int pageSize)
         {
-            var list = new List<Recipe>();
-            var result = Database.Recipes.Where(x => x.Name !="");
-            foreach (var item in result)
-            {
-                list.Add(item);
-            }
-            return list;
+            var result = Database.Recipes.Where(x => x.Name !="")
+                .OrderBy(t=>t.RecipeId)
+                .Skip(itemsToSkip).Take(pageSize).ToList();
+            return result;
         }
     }
 }

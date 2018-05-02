@@ -1,4 +1,6 @@
-﻿using DAL.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using DAL.Interfaces;
 using MyMenu.DAL.EF;
 using MyMenu.DAL.Entities;
 
@@ -12,6 +14,7 @@ namespace DAL.Repositories
             Database = db;
         }
 
+
         public void Create(RecipeProduct item)
         {
             Database.RecipesProducts.Add(item);
@@ -23,5 +26,12 @@ namespace DAL.Repositories
         {
             Database.Dispose();
         }
+
+        public List<RecipeProduct> GetProductIdByRecipe(int recipeId)
+        {
+            var result = Database.RecipesProducts.Where(x=>x.RecipeId==recipeId).ToList();
+            return result;
+        }
+
     }
 }

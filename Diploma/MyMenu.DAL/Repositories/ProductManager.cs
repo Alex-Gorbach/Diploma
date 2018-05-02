@@ -28,13 +28,47 @@ namespace DAL.Repositories
 
         public List<Product> FindProductByName(string productName)
         {
-            var list = new List<Product>();
-            var result = Database.Products.Where(x => x.Name == productName);
-            foreach (var item in result)
+            var result = Database.Products.Where(x => x.Name == productName).ToList();
+            return result;
+        }
+
+
+        public List<Product> GetProbuctsById(int recipeId)
+        {
+            var productsList = new List<Product>();
+            var productsId = new List<int>();
+            var recipeProduct = new RecipeProductManager(Database);
+
+            var recipeProductList= recipeProduct.GetProductIdByRecipe(recipeId);
+           
+            foreach (var item in recipeProductList)
             {
-                list.Add(item);
+                productsId.Add(item.ProductId);
             }
-            return list;
+          
+            for (int i = 0; i < productsId.Count; i++)
+            {
+                int index = productsId.ElementAt(i);
+                var result = Database.Products.Where(x => x.ProductId == index).ToList();
+                foreach (var item in result)
+                {
+                    productsList.Add(item);
+                }
+            }
+           
+            return productsList;
+        }
+
+        public List<string> GetProductsCopasity(int id)
+        {
+            var productCopasity = new List<string>();
+            var recipeProduct = new RecipeProductManager(Database);
+            var productId = recipeProduct.GetProductIdByRecipe(id);
+            foreach (var item in productId)
+            {
+                productCopasity.Add(item.Number);
+            }
+            return productCopasity;
         }
     }
 

@@ -16,7 +16,7 @@ namespace MyMenu.BLL.Interfaces
         Task SetInitialData(UserDTO adminDto, List<string> roles);
         Task<UserDTO> GetUserByEmail(string email);
 
-        List<RecipeDTO> GetAllRecipes();
+        List<RecipeDTO> GetAllRecipes(int itemsToSkip,int pageSize);
         
     }
 }

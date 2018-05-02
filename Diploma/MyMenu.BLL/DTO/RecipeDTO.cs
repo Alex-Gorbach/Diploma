@@ -1,4 +1,6 @@
-﻿namespace BLL.DTO
+﻿using System.Collections.Generic;
+
+namespace BLL.DTO
 {
     public class RecipeDTO
     {
@@ -6,5 +8,7 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public string ImageHref { get; set; }
+        public List<ProductDTO> Products {get; set;}
+        public List<string> ProductCopasity { get; set; }
     }
 }

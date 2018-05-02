@@ -16,12 +16,26 @@ namespace MyMenu.WEB.Controllers
                 return HttpContext.GetOwinContext().GetUserManager<IUserService>();
             }
         }
- 
-        public ActionResult Index()
-        {
-            var result = UserService.GetAllRecipes();
+        
+        const int pageSize = 3;
 
-            return View(result);
+        public ActionResult Index(int? id)
+        {
+
+          
+            int page = id ?? 0;
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Items", GetItemsPage(page));
+            }
+            return View(GetItemsPage(page));
+
+        }
+
+        private List<RecipeDTO> GetItemsPage(int page = 1)
+        {
+            var itemsToSkip = page * pageSize;
+            return UserService.GetAllRecipes(itemsToSkip, pageSize);
         }
 
         public ActionResult SearchRecipe()
@@ -44,9 +58,10 @@ namespace MyMenu.WEB.Controllers
             return View();
         }
 
-        public ActionResult Recipe()
+        [HttpPost]
+        public ActionResult Recipe(RecipeDTO item)
         {
-            return View();
+            return View(item);
         }
     }
 }

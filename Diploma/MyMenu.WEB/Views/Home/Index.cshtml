@@ -1,35 +1,60 @@
-﻿@model IEnumerable<BLL.DTO.RecipeDTO>
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+</head>
+<body>
 
-@*<img src="~/Content/flat,1000x1000,075,f.u5.jpg" style="width:300px;height:300px" />*@
+    <div id="scrolList">
+        @Html.Partial("_Items")
+    </div>
 
-@*@foreach (string country in ViewBag.Recipes)
-{
-    <p>@country</p>
-}*@
-<div>
-    @foreach (var item in Model)
-    {
-    <h1 class="recipeName">@Html.ActionLink(item.Name, "Recipe", "Home", new { area = "" }, new { @class = "navbar-brand" })</h1>
-        <div style="display: -webkit-box;">
-            <img style="width: 300px; height: 359px;" src=@Html.DisplayFor(modelItem => item.ImageHref) />
-            <div style="font-size:18px;line-height:22px;margin-bottom:6px">
-                <div style="font-size: 18px;line-height: 22px; margin-bottom: 6px; margin-left: 47px;">
-                    <div class="title">Ингредиенты</div>
-                    <div class="count"><span class="yield">около 750 г. теста</span></div>
-                    <div class="ingredient"><span class="value">400</span> <span class="type">г.</span> <span class="name">пшеничной муки</span></div>
-                    <div class="ingredient"><span class="value">250</span> <span class="type">мл.</span> <span class="name">молока</span></div>
-                    <div class="ingredient"><span class="value">50</span> <span class="type">г.</span> <span class="name">сливочного <a href="https://arborio.ru/na-kakom-masle-zharit/" class="kblinker" title="More about масла »">масла</a></span></div>
-                    <div class="ingredient"><span class="value">5</span> <span class="type">г.</span> <span class="name">дрожжей</span></div>
-                    <div class="ingredient"><span class="amount">1</span> <span class="name">куриное яйцо</span></div>
-                    <div class="ingredient"><span class="value">1</span> <span class="type">ст.л.</span> <span class="name">сахара</span></div>
-                    <div class="ingredient"><span class="value">1</span> <span class="type">ч.л.</span> <span class="name">соли</span></div>
+    <div id="loading"><img src='@Url.Content("~/Content/loading_spinner.gif")'></div>
 
-                </div>
-            </div>
-        </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript">
+$(function () {
+
+    $('div#loading').hide();
+
+    var page = 0;
+    var _inCallback = false;
+    function loadItems() {
+        if (page > -1 && !_inCallback) {
+            _inCallback = true;
+            page++;
+            $('div#loading').show();
+
+            $.ajax({
+                type: 'GET',
+                url: '/Home/Index/' + page,
+                success: function (data, textstatus) {
+                    if (data != '') {
+                        $("#scrolList").append(data);
+                    }
+                    else {
+                        page = -1;
+                    }
+                    _inCallback = false;
+                    $("div#loading").hide();
+                }
+            });
+        }
     }
-</div>
+    // обработка события скроллинга
+    $(window).scroll(function () {
+        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+
+            loadItems();
+        }
+    });
+})
+    </script>
+</body>
+</html>

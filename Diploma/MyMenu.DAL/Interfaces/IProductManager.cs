@@ -8,5 +8,7 @@ namespace DAL.Interfaces
     {
         void Create(Product item);
         List<Product> FindProductByName(string productName);
+        List<Product> GetProbuctsById(int id);
+        List<string> GetProductsCopasity(int id);
     }
 }

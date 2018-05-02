@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyMenu.DAL.Entities
@@ -15,9 +14,6 @@ namespace MyMenu.DAL.Entities
         public int RecipeId { get; set; }
 
         public string Number { get; set; }
-
-      
-
 
     }
 
