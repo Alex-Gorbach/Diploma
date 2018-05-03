@@ -7,7 +7,6 @@ namespace WindowsFormsApp1.Core
     {
         T ParseHref(IHtmlDocument document);
         RecipeModel ParseData(IHtmlDocument document);
-
     }
 }
 

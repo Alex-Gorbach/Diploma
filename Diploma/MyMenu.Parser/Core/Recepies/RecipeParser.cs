@@ -16,10 +16,7 @@ namespace WindowsFormsApp1.Recepies
             service.InitCollection(recipeModel);
 
             var recipe = document.QuerySelector(".hrecipe");
-
             var items = recipe.QuerySelector(".fn");
-                //.Where(item => item.ClassName != null
-                //&& item.ClassName.Contains("post__title"));
 
             var descriptions= recipe.QuerySelectorAll("span")
                 .Where(item => item.ClassName != null
@@ -52,10 +49,7 @@ namespace WindowsFormsApp1.Recepies
 
                 var products = ingredient[i].QuerySelectorAll("span")
                     .Where(item => item.ClassName != null
-                    && item.ClassName == "name"
-                    // && item.ParentElement.ClassName!=null
-                    //&& item.ParentElement.ClassName.Contains("ingredient")
-                    );
+                    && item.ClassName == "name");
                 foreach (var item in products)
                 {
                     recipeModel.Products.Add(item.TextContent);
@@ -78,19 +72,13 @@ namespace WindowsFormsApp1.Recepies
 
             }
 
-            //service.SetColllection(recipeModel.Number, values);
-            //service.SetColllection(recipeModel.Products, products);
-            //service.SetColllection(recipeModel.Units, unitType);
             foreach (var item in imageSrc)
             {
                 recipeModel.ImageHref = item.GetAttribute("data-lazy-src");
             }
 
-            //foreach (var item in items)
-            //{
-                recipeModel.Name=items.TextContent;
-               
-           // }
+            recipeModel.Name=items.TextContent;
+
             foreach (var item in descriptions)
             {
                 recipeModel.Description += item.TextContent;

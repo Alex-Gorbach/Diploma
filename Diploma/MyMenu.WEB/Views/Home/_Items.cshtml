@@ -3,9 +3,9 @@
 <div>
     @foreach (var item in Model)
     {
-        using(Html.BeginForm("Recipe", "Home",item)) {
-        <input type="submit" value="@item.Name" />
-        }
+    <div>
+        @Html.ActionLink(@item.Name, "Recipe", "Home", new { id =item.RecipeId }, new { @class = "navbar-brand" })
+    </div>
         <div style="display: -webkit-box;">
             <img style="width: 300px; height: 359px;" src=@Html.DisplayFor(modelItem => item.ImageHref) />
             <div style="font-size:18px;line-height:22px;margin-bottom:6px">
@@ -22,5 +22,5 @@
                 </div>
             </div>
         </div>
-        }
-    </div>
+    }
+</div>

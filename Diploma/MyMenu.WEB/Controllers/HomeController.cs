@@ -9,6 +9,8 @@ namespace MyMenu.WEB.Controllers
 {
     public class HomeController : Controller
     {
+        const int pageSize = 3;
+
         private IUserService UserService
         {
             get
@@ -16,13 +18,9 @@ namespace MyMenu.WEB.Controllers
                 return HttpContext.GetOwinContext().GetUserManager<IUserService>();
             }
         }
-        
-        const int pageSize = 3;
 
         public ActionResult Index(int? id)
         {
-
-          
             int page = id ?? 0;
             if (Request.IsAjaxRequest())
             {
@@ -47,21 +45,19 @@ namespace MyMenu.WEB.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Recipe(RecipeDTO item)
+        public ActionResult Recipe(int id)
         {
-            return View(item);
+            var recipe = UserService.GetRecipeById(id);
+            return View(recipe);
         }
     }
 }

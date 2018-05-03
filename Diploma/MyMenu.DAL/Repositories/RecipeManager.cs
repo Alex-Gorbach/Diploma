@@ -20,7 +20,6 @@ namespace DAL.Repositories
             var result= Database.Recipes.Add(item);
             Database.SaveChanges();
             return result;
-
         }
 
         public void Dispose()
@@ -39,6 +38,12 @@ namespace DAL.Repositories
             var result = Database.Recipes.Where(x => x.Name !="")
                 .OrderBy(t=>t.RecipeId)
                 .Skip(itemsToSkip).Take(pageSize).ToList();
+            return result;
+        }
+
+        public Recipe GetRecipeById(int id)
+        {
+            var result = Database.Recipes.Find(id);
             return result;
         }
     }

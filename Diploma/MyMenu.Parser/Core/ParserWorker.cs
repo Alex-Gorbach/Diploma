@@ -1,6 +1,5 @@
 ﻿using AngleSharp.Parser.Html;
 using System;
-using System.Threading.Tasks;
 using WindowsFormsApp1.Core.Servise;
 
 namespace WindowsFormsApp1.Core
@@ -100,8 +99,6 @@ namespace WindowsFormsApp1.Core
                     var resulRecipe = parser.ParseData(recipeDocument);
                     await dataServise.Create(resulRecipe);
                 }
-                
-
 
                 OnNewData?.Invoke(this, result);
 

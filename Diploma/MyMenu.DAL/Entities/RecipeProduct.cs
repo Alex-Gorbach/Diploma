@@ -9,7 +9,6 @@ namespace MyMenu.DAL.Entities
         [Key,Column(Order=1)]
         public int ProductId { get; set; }
 
-       
         [Key, Column(Order = 2)]
         public int RecipeId { get; set; }
 

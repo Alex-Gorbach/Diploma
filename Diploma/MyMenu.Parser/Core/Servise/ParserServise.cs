@@ -9,7 +9,6 @@ namespace WindowsFormsApp1.Core.Servise
 
         public List<string> SetColllection(List<string> destionation, IEnumerable<IElement> source)
         {
-
             foreach (var item in source)
             {
                 destionation.Add(item.TextContent);

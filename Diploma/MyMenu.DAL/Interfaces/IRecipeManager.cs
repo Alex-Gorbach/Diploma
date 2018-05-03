@@ -9,5 +9,6 @@ namespace DAL.Interfaces
         Recipe Create(Recipe item);
         List<Recipe> FindRecipeByName(string recipeName);
         List<Recipe> GetAllRepices(int itemsToSkip,int pageSize);
+        Recipe GetRecipeById(int id);
     }
 }

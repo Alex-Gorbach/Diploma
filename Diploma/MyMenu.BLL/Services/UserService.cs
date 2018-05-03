@@ -95,9 +95,6 @@ namespace MyMenu.BLL.Services
                 recipes.ElementAt(i).Products = productsMap;
                 recipes.ElementAt(i).ProductCopasity = productCopasity;
             }
-            
-            
-           
             return recipes;
         }
 
@@ -108,6 +105,19 @@ namespace MyMenu.BLL.Services
             user.Name = result.ClientProfile.Name;
             
             return user;
+        }
+
+        public RecipeDTO GetRecipeById(int id)
+        {
+            List<Product> productsList = new List<Product>();
+            var result = Database.RecipeManager.GetRecipeById(id);
+            var recipe = Mapper.Map<Recipe, RecipeDTO>(result);
+            var products = Database.ProductManager.GetProbuctsById(id);
+            var productsMap = Mapper.Map<List<Product>, List<ProductDTO>>(products);
+            var productCopasity = Database.ProductManager.GetProductsCopasity(id);
+            recipe.Products = productsMap;
+            recipe.ProductCopasity = productCopasity;
+            return recipe;
         }
     }
 

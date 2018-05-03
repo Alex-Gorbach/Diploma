@@ -38,9 +38,7 @@ namespace DAL.Repositories
             var productsList = new List<Product>();
             var productsId = new List<int>();
             var recipeProduct = new RecipeProductManager(Database);
-
             var recipeProductList= recipeProduct.GetProductIdByRecipe(recipeId);
-           
             foreach (var item in recipeProductList)
             {
                 productsId.Add(item.ProductId);

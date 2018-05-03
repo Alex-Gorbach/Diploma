@@ -17,6 +17,6 @@ namespace MyMenu.BLL.Interfaces
         Task<UserDTO> GetUserByEmail(string email);
 
         List<RecipeDTO> GetAllRecipes(int itemsToSkip,int pageSize);
-        
+        RecipeDTO GetRecipeById(int id);
     }
 }

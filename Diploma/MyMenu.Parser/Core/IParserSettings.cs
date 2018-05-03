@@ -9,8 +9,5 @@ namespace WindowsFormsApp1.Core
 
         int StartPoint { get; set; }
         int EndPoint { get; set; }
-
-
-
     }
 }
