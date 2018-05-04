@@ -41,6 +41,12 @@ namespace MyMenu.WEB.Controllers
             return View();
         }
 
+        [HttpPost]
+        public JsonResult AjaxTest2(string[] searchStr)
+        {
+            return Json("Сервер получил данные: " + searchStr);
+        }
+
 
         public ActionResult About()
         {

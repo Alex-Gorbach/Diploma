@@ -3,8 +3,75 @@
     ViewBag.Title = "SearchRecipe";
 }
 
-<h2>SearchRecipe</h2>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
-<input type="text" value="" />
-<input type="button" value="add prodct to search" />
-<input type="submit" value="search" />
+<h2>Search</h2>
+
+<input id="productInput" type="text" value="" placeholder="product name..." />
+<input type="button" value="add prodct to search" onclick="addProductToTable()" />
+<input type="submit" value="search" id="ajaxSearch" @*onclick="GetCellValues()"*@ />
+<div>
+    <table id="productsTable">
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+<script>
+    function addProductToTable() {
+        var element = document.getElementById("productInput");
+        var productName = element.value;
+
+        var table = document.getElementById("productsTable");
+        var row = table.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+
+        cell1.innerHTML = productName;
+        cell2.innerHTML = "<input type='button' value='x'  id='deleteButton' onclick='removeProduct(this)'>";
+    }
+    var arr = [];
+    function removeProduct(r) {
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("productsTable").deleteRow(i);
+        arr.pop(i);
+    }
+
+    //function GetCellValues() {
+       
+    //}
+
+    $('#ajaxSearch').click(function () {
+        //alert("AjaxTest2");
+        var table = document.getElementById('productsTable');
+        for (var r = 0, n = table.rows.length; r < n; r++) {
+            arr.push(table.rows[r].cells[0].innerHTML)
+        }
+        console.log(arr);
+        console.log("done1");
+
+        //var testData = { 'searchStr': arr.) };
+       // console.log(testData);
+        console.log(JSON.stringify(arr));
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/AjaxTest2",
+            data: JSON.stringify(arr),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: successFunc,
+            error: errorFunc
+        });
+    });
+
+    function successFunc(data, status) {
+        alert(data);
+    }
+
+    function errorFunc(errorData) {
+        alert('Ошибка' + errorData.responseText);
+    }
+
+</script>
+
