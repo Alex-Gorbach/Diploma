@@ -7,7 +7,7 @@ namespace DAL.Interfaces
     public interface IRecipeManager:IDisposable
     {
         Recipe Create(Recipe item);
-        List<Recipe> FindRecipeByName(string recipeName);
+        List<Recipe> GetRecipeByName(string recipeName);
         List<Recipe> GetAllRepices(int itemsToSkip,int pageSize);
         Recipe GetRecipeById(int id);
     }

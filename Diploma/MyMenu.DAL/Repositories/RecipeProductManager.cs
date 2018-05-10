@@ -14,6 +14,9 @@ namespace DAL.Repositories
             Database = db;
         }
 
+        public RecipeProductManager()
+        {
+        }
 
         public void Create(RecipeProduct item)
         {
@@ -30,6 +33,12 @@ namespace DAL.Repositories
         public List<RecipeProduct> GetProductIdByRecipe(int recipeId)
         {
             var result = Database.RecipesProducts.Where(x=>x.RecipeId==recipeId).ToList();
+            return result;
+        }
+
+        public IEnumerable<RecipeProduct> GetRecipeIdByProductId(int productId)
+        {
+            var result = Database.RecipesProducts.Where(x=>x.ProductId==productId).ToList();
             return result;
         }
 

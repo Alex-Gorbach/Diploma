@@ -1,4 +1,5 @@
 ﻿using MyMenu.BLL.Interfaces;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System.Web;
 using System.Web.Mvc;
@@ -42,9 +43,19 @@ namespace MyMenu.WEB.Controllers
         }
 
         [HttpPost]
-        public JsonResult AjaxTest2(string[] searchStr)
+        public ActionResult SerchByArray(string[] searchStr)
         {
-            return Json("Сервер получил данные: " + searchStr);
+            var result = UserService.GetRecipeByProductsName(searchStr);
+             
+            return PartialView("_Items",result);
+        }
+
+        [HttpPost]
+        public ActionResult AddToRecUserRecipeList(string recipeId)
+        {
+            var userId = User.Identity.GetUserId();
+            UserService.AddRecipeToUserList(userId,recipeId);
+            return View();
         }
 
 

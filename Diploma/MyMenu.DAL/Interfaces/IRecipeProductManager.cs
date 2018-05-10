@@ -8,5 +8,6 @@ namespace DAL.Interfaces
     {
         void Create(RecipeProduct item);
         List<RecipeProduct> GetProductIdByRecipe(int recipeId);
+        IEnumerable<RecipeProduct> GetRecipeIdByProductId(int productId);
     }
 }

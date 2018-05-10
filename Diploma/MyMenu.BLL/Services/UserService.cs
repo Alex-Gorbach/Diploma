@@ -119,6 +119,70 @@ namespace MyMenu.BLL.Services
             recipe.ProductCopasity = productCopasity;
             return recipe;
         }
+
+        public List<RecipeDTO> GetRecipeByName(string recipeName)
+        {
+            var recipes = new List<Recipe>();
+     
+            var result = Database.RecipeManager.GetRecipeByName(recipeName);
+            foreach (var item in result)
+            {
+                recipes.Add(item);
+            }
+            var recipesInfo =new List<RecipeDTO>();
+            for (int i = 0; i < recipes.Count; i++)
+            {
+                var index = recipes.ElementAt(i).RecipeId;
+                var recipe = GetRecipeById(index);
+                recipesInfo.Add(recipe);
+            }
+
+            return recipesInfo;
+
+        }
+
+        public List<RecipeDTO> GetRecipeByProductsName(string[] productsName)
+        {
+            var products = new List<Product>();
+            var recipesProducts = new List<Product>();
+            var productsCount = productsName.Count();
+            for (int i = 0; i < productsCount; i++)
+            {
+                var productInfo = Database.ProductManager.GetProductByName(productsName[i]);
+                foreach (var item in productInfo)
+                {
+                    products.Add(item);
+                }
+            }
+
+            var recipesId = new List<int>();
+            var productId = products.ElementAt(0).ProductId;
+            var listProducts = Database.RecipeProductManager.GetRecipeIdByProductId(productId).Select(x=>x.RecipeId);
+            for (int i = 1; i < products.Count; i++)
+            {
+
+                productId = products.ElementAt(i).ProductId;
+                var templist = Database.RecipeProductManager.GetRecipeIdByProductId(productId).Select(x=>x.RecipeId);
+                listProducts = listProducts.Intersect(templist);
+
+            }
+
+
+            var recipes = new List<RecipeDTO>();
+            for (int i = 0; i < listProducts.Count(); i++)
+            {
+                var recipeId = listProducts.ElementAt(i);
+                var recipe = GetRecipeById(recipeId);
+                recipes.Add(recipe);
+            }
+
+            return recipes;
+        }
+
+        public void AddRecipeToUserList(string userId, string recipeId)
+        {
+          
+        }
     }
 
 

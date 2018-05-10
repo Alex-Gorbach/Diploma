@@ -27,9 +27,9 @@ namespace DAL.Repositories
             Database.Dispose();
         }
 
-        public List<Recipe> FindRecipeByName(string recipeName)
+        public List<Recipe> GetRecipeByName(string recipeName)
         {
-            var result = Database.Recipes.Where(x=>x.Name == recipeName).ToList();
+            var result = Database.Recipes.Where(x=>x.Name.Contains(recipeName)).ToList();
             return result;
         }
 

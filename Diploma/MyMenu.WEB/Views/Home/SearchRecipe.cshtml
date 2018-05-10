@@ -1,77 +1,95 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "SearchRecipe";
 }
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+</head>
 
-<h2>Search</h2>
+<body>
+    <input id="productInput" type="text" value="" placeholder="product name..." />
+    <input type="button" value="add prodct to search" onclick="addProductToTable()" />
+    <input type="submit" value="search" id="ajaxSearch"/>
+    <div>
+        <table id="productsTable"></table>
+    </div>
 
-<input id="productInput" type="text" value="" placeholder="product name..." />
-<input type="button" value="add prodct to search" onclick="addProductToTable()" />
-<input type="submit" value="search" id="ajaxSearch" @*onclick="GetCellValues()"*@ />
-<div>
-    <table id="productsTable">
-    </table>
-</div>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <div id="searchResult">
+        @*@{Html.RenderPartial("_Items", Model)}*@
+    </div>
+
+</body>
+</html>
 
 
 <script>
     function addProductToTable() {
-        var element = document.getElementById("productInput");
-        var productName = element.value;
+                var element = document.getElementById("productInput");
+                var productName = element.value;
 
-        var table = document.getElementById("productsTable");
-        var row = table.insertRow(0);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
+                var table = document.getElementById("productsTable");
+                var row = table.insertRow(0);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
 
-        cell1.innerHTML = productName;
-        cell2.innerHTML = "<input type='button' value='x'  id='deleteButton' onclick='removeProduct(this)'>";
-    }
-    var arr = [];
-    function removeProduct(r) {
-        var i = r.parentNode.parentNode.rowIndex;
-        document.getElementById("productsTable").deleteRow(i);
-        arr.pop(i);
-    }
+                cell1.innerHTML = productName;
+                cell2.innerHTML = "<input type='button' value='x'  id='deleteButton' onclick='removeProduct(this)'>";
+            }
 
-    //function GetCellValues() {
-       
-    //}
+            var arr = [];
+            function removeProduct(r) {
+                var i = r.parentNode.parentNode.rowIndex;
+                document.getElementById("productsTable").deleteRow(i);
+                arr.pop(i);
+            }
+
 
     $('#ajaxSearch').click(function () {
-        //alert("AjaxTest2");
-        var table = document.getElementById('productsTable');
-        for (var r = 0, n = table.rows.length; r < n; r++) {
-            arr.push(table.rows[r].cells[0].innerHTML)
-        }
-        console.log(arr);
-        console.log("done1");
-
-        //var testData = { 'searchStr': arr.) };
-       // console.log(testData);
-        console.log(JSON.stringify(arr));
-
+                var table = document.getElementById('productsTable');
+                for (var r = 0, n = table.rows.length; r < n; r++) {
+                    arr.push(table.rows[r].cells[0].innerHTML)
+                }
         $.ajax({
-            type: "POST",
-            url: "/Home/AjaxTest2",
+                    type: "POST",
+            url: "/Home/SerchByArray",
             data: JSON.stringify(arr),
             contentType: "application/json; charset=utf-8",
-            dataType: "json",
+            dataType: "html",
             success: successFunc,
             error: errorFunc
         });
-    });
+            });
 
     function successFunc(data, status) {
-        alert(data);
-    }
+        $('#searchResult').html(data);
+
+            }
 
     function errorFunc(errorData) {
-        alert('Ошибка' + errorData.responseText);
-    }
+        alert("asd");
+            }
 
+
+
+            var page = 0;
+            var _inCallback = false;
+            function loadItems(data) {
+                if (page > -1 && !_inCallback) {
+                    _inCallback = true;
+                    page++;
+
+                    if (data != '') {
+                $("#searchResult").append(data);
+                    }
+                    else {
+                        page = -1;
+                    }
+                    _inCallback = false;
+                }
+            }
 </script>
+
+
 

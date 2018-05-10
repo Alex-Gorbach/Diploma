@@ -68,6 +68,12 @@ namespace DAL.Repositories
             }
             return productCopasity;
         }
+
+        public List<Product> GetProductByName(string productName)
+        {
+            var result = Database.Products.Where(x => x.Name == productName).ToList();
+            return result;
+        }
     }
 
 }

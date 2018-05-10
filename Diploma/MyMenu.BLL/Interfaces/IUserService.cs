@@ -18,5 +18,8 @@ namespace MyMenu.BLL.Interfaces
 
         List<RecipeDTO> GetAllRecipes(int itemsToSkip,int pageSize);
         RecipeDTO GetRecipeById(int id);
+        List<RecipeDTO> GetRecipeByName(string recipeName);
+        List<RecipeDTO> GetRecipeByProductsName(string[] productsName);
+        void AddRecipeToUserList(string userId, string recipeId);
     }
 }

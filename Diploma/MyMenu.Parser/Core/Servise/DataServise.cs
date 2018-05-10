@@ -32,7 +32,7 @@ namespace WindowsFormsApp1.Core.Servise
 
             RecipeProduct recipeProduct;
             List<Product> products=null;
-            var result = Database.RecipeManager.FindRecipeByName(recipeModel.Name);
+            var result = Database.RecipeManager.GetRecipeByName(recipeModel.Name);
             if (result.Count==0)
             {
                 try
