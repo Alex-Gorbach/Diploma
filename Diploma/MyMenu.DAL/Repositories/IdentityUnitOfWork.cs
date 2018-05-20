@@ -20,6 +20,8 @@ namespace MyMenu.DAL.Repositories
         private IRecipeManager recipeManager;
         private IProductManager productManager;
         private IRecipeProductManager recipeProductManager;
+        private IRecipeClientProfileManager recipeClientProfileManager;
+
 
         public IdentityUnitOfWork(string connectionString)
         {
@@ -30,6 +32,7 @@ namespace MyMenu.DAL.Repositories
             recipeManager = new RecipeManager(db);
             productManager=new ProductManager(db);
             recipeProductManager=new RecipeProductManager(db);
+            recipeClientProfileManager = new RecipeClientProfileManager(db);
         }
 
         public ApplicationUserManager UserManager
@@ -61,6 +64,11 @@ namespace MyMenu.DAL.Repositories
             get { return recipeProductManager; }
         }
 
+        public IRecipeClientProfileManager RecipeClientProfileManager
+        {
+            get { return recipeClientProfileManager; }
+        }
+
         public async Task SaveAsync()
         {
             await db.SaveChangesAsync();
@@ -85,6 +93,7 @@ namespace MyMenu.DAL.Repositories
                     recipeManager.Dispose();
                     productManager.Dispose();
                     recipeProductManager.Dispose();
+                    recipeClientProfileManager.Dispose();
                 }
                 this.disposed = true;
             }

@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BLL.DTO;
-using Microsoft.AspNet.Identity;
 using MyMenu.BLL.Infrastructure;
-using MyMenu.DAL.Entities;
 
 namespace MyMenu.BLL.Interfaces
 {
@@ -20,6 +18,6 @@ namespace MyMenu.BLL.Interfaces
         RecipeDTO GetRecipeById(int id);
         List<RecipeDTO> GetRecipeByName(string recipeName);
         List<RecipeDTO> GetRecipeByProductsName(string[] productsName);
-        void AddRecipeToUserList(string userId, string recipeId);
+        bool AddRecipeToUserList(string userId, int recipeId);
     }
 }

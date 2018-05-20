@@ -51,10 +51,10 @@ namespace MyMenu.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddToRecUserRecipeList(string recipeId)
+        public ActionResult AddToRecUserRecipeList(int recipeId)
         {
             var userId = User.Identity.GetUserId();
-            UserService.AddRecipeToUserList(userId,recipeId);
+            var result=UserService.AddRecipeToUserList(userId,recipeId);
             return View();
         }
 

@@ -12,6 +12,7 @@ namespace MyMenu.DAL.Interfaces
         IProductManager ProductManager { get; }
         IRecipeManager RecipeManager { get; }
         IRecipeProductManager RecipeProductManager { get; }
+        IRecipeClientProfileManager RecipeClientProfileManager { get; }
         ApplicationRoleManager RoleManager { get; }
         Task SaveAsync();
     }

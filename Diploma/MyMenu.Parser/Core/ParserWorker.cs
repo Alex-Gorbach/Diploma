@@ -1,5 +1,6 @@
 ﻿using AngleSharp.Parser.Html;
 using System;
+using System.Threading.Tasks;
 using WindowsFormsApp1.Core.Servise;
 
 namespace WindowsFormsApp1.Core
@@ -92,13 +93,13 @@ namespace WindowsFormsApp1.Core
                 
                 var resultHref = result as string[];
 
-                for(int j=0;j< resultHref.Length;j++)
+                for(int j = 0; j < resultHref.Length; j++)
                 {
                     var recipeSource = await loader.GetRecipeByPageHref(resultHref[j]);
                     var recipeDocument = await domParser.ParseAsync(recipeSource);
                     var resulRecipe = parser.ParseData(recipeDocument);
                     await dataServise.Create(resulRecipe);
-                }
+                 }
 
                 OnNewData?.Invoke(this, result);
 

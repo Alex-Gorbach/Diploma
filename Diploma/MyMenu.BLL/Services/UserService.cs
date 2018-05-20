@@ -1,14 +1,15 @@
-﻿using BLL.DTO;
+﻿using AutoMapper;
+using BLL.DTO;
+using DAL.Entities;
+using Microsoft.AspNet.Identity;
 using MyMenu.BLL.Infrastructure;
 using MyMenu.BLL.Interfaces;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using System.Security.Claims;
-using MyMenu.DAL.Interfaces;
 using MyMenu.DAL.Entities;
+using MyMenu.DAL.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace MyMenu.BLL.Services
 {
@@ -179,9 +180,22 @@ namespace MyMenu.BLL.Services
             return recipes;
         }
 
-        public void AddRecipeToUserList(string userId, string recipeId)
+        public bool AddRecipeToUserList(string userId, int recipeId)
         {
-          
+            var recipeClient = new RecipeClientProfile()
+            {
+                Id = userId,
+                RecipeId = recipeId
+            };
+            var recipeUser = Database.RecipeClientProfileManager.FindByRecipeAndUserId( userId,  recipeId);
+            if (recipeUser == null)
+            {
+                Database.RecipeClientProfileManager.Create(recipeClient);
+                return true;
+            }
+           
+            return false;
+           
         }
     }
 

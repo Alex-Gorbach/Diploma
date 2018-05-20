@@ -5,11 +5,14 @@
 <div class="recipe">
     <h2>@Html.DisplayFor(model => model.Name)</h2>
     <img src="@Html.DisplayFor(model => model.ImageHref)" />
-    @using (Html.BeginForm("AddToRecUserRecipeList", "Home",new { recipeId = Model.RecipeId }))
-    {
-        <input type="submit" value="Add recipe" />
-    }
 
+    @if (User.Identity.IsAuthenticated)
+    {
+        using (Html.BeginForm("AddToRecUserRecipeList", "Home", new { recipeId = Model.RecipeId }))
+        {
+            <input type="submit" value="Add recipe" />
+        }
+    }
 
     @for (int i = 0; i < Model.Products.Count; i++)
     {
