@@ -2,31 +2,105 @@
 @{
     ViewBag.Title = "Recipe";
 }
-<div class="recipe">
-    <h2>@Html.DisplayFor(model => model.Name)</h2>
-    <img src="@Html.DisplayFor(model => model.ImageHref)" />
 
-    @if (User.Identity.IsAuthenticated)
-    {
-        using (Html.BeginForm("AddToRecUserRecipeList", "Home", new { recipeId = Model.RecipeId }))
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/MicrosoftAjax.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/MicrosoftMvcAjax.js"></script>
+</head>
+<body>
+    <div class="recipe">
+        <h2>@Html.DisplayFor(model => model.Name)</h2>
+        <img src="@Html.DisplayFor(model => model.ImageHref)" />
+
+        @if (User.Identity.IsAuthenticated)
         {
-            <input type="submit" value="Add recipe" />
+            using (Ajax.BeginForm("AddToRecUserRecipeList", "Home", new { recipeId = Model.RecipeId },
+                new AjaxOptions { OnSuccess = "onuploadsuccess", OnFailure = "onuploadfailor", HttpMethod = "POST" },
+                new { enctype = "multipart/form-data" }))
+            {
+                <input type="submit" id="addToListButton" value="Add recipe" />
+            }
         }
-    }
 
-    @for (int i = 0; i < Model.Products.Count; i++)
-    {
-        <div class="ingredients">
-            <span class="value">@Model.ProductCopasity.ElementAt(i)</span>
-            <span class="type">@Model.Products.ElementAt(i).Unit</span>
-            <span class="name">@Model.Products.ElementAt(i).Name</span>
+        @for (int i = 0; i < Model.Products.Count; i++)
+        {
+            <div class="ingredients">
+                <span class="value">@Model.ProductCopasity.ElementAt(i)</span>
+                <span class="type">@Model.Products.ElementAt(i).Unit</span>
+                <span class="name">@Model.Products.ElementAt(i).Name</span>
+            </div>
+        }
+
+        <div class="description">
+            <p>
+                @Html.DisplayFor(model => model.Description)
+            </p>
         </div>
+
+        <div style="display: none;">
+            <p id="recipeIdVal">@Model.RecipeId</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        checkIfInListAjax();
+    });
+
+    function checkIfInListAjax() {
+        console.log('load');
+        var recipeId = [];
+        recipeId.push(document.getElementById("recipeIdVal").innerHTML)
+        $.ajax({
+            type: "POST",
+            url: "/Home/ChekifInList",
+            data: JSON.stringify(recipeId),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                if (!data) {
+                    var elem = document.getElementById("addToListButton");
+                    elem.outerHTML = "<p>Already in list</p>";
+                }
+            },
+            error: errorFunc
+        });
+       
     }
 
-    <div class="description">
-        <p>
-            @Html.DisplayFor(model => model.Description)
-        </p>
-    </div>
-</div>
+    function alreadyInList(data) {
 
+        if (!data)
+            elem.outerHTML = "<p>Already in list</p>";
+    }
+
+    function errorFunc(errordata) {
+        console.log(errordata)
+    }
+    function onuploadsuccess(data) {
+        var elem = document.getElementById("addToListButton");
+        if (data)
+            elem.outerHTML = "<p>Successfully added</p>";
+    }
+
+    function onuploadfailor(errorData) {
+        alert(errorData);
+    }
+
+
+
+</script>

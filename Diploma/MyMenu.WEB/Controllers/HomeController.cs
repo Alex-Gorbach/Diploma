@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BLL.DTO;
 using System.Collections.Generic;
+using System;
 
 namespace MyMenu.WEB.Controllers
 {
@@ -51,13 +52,21 @@ namespace MyMenu.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddToRecUserRecipeList(int recipeId)
+        public bool AddToRecUserRecipeList(int recipeId)
         {
             var userId = User.Identity.GetUserId();
             var result=UserService.AddRecipeToUserList(userId,recipeId);
-            return View();
+            return result;
         }
-
+        
+        [HttpPost]
+        public ActionResult ChekifInList(string[] recipeId)
+        {
+            var userId = User.Identity.GetUserId();
+            var recipeIdVal = Int32.Parse(recipeId[0]);
+            var result = UserService.ChekIfInUsersList(userId, recipeIdVal);
+            return Json(result);
+        }
 
         public ActionResult About()
         {

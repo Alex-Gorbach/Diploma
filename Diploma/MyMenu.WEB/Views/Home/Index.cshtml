@@ -34,7 +34,7 @@ $(function () {
             $.ajax({
                 type: 'GET',
                 url: '/Home/Index/' + page,
-                success: function (data, textstatus) {
+                success: function (data, textstatus)    {
                     if (data != '') {
                         $("#scrolList").append(data);
                     }

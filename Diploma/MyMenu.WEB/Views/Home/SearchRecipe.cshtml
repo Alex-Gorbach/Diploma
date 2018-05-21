@@ -47,12 +47,12 @@
 
 
     $('#ajaxSearch').click(function () {
-                var table = document.getElementById('productsTable');
-                for (var r = 0, n = table.rows.length; r < n; r++) {
-                    arr.push(table.rows[r].cells[0].innerHTML)
-                }
+        var table = document.getElementById('productsTable');
+        for (var r = 0, n = table.rows.length; r < n; r++) {
+            arr.push(table.rows[r].cells[0].innerHTML)
+        }
         $.ajax({
-                    type: "POST",
+            type: "POST",
             url: "/Home/SerchByArray",
             data: JSON.stringify(arr),
             contentType: "application/json; charset=utf-8",
@@ -60,16 +60,15 @@
             success: successFunc,
             error: errorFunc
         });
-            });
+    });
 
     function successFunc(data, status) {
         $('#searchResult').html(data);
-
-            }
+    }
 
     function errorFunc(errorData) {
-        alert("asd");
-            }
+        alert(errorData);
+    }
 
 
 

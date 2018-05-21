@@ -197,6 +197,16 @@ namespace MyMenu.BLL.Services
             return false;
            
         }
+
+        public bool ChekIfInUsersList(string userId, int recipeId)
+        {
+            var recipeUser = Database.RecipeClientProfileManager.FindByRecipeAndUserId(userId, recipeId);
+            if (recipeUser == null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 
 
