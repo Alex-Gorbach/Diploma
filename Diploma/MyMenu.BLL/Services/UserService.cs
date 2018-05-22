@@ -207,6 +207,28 @@ namespace MyMenu.BLL.Services
             }
             return false;
         }
+
+        public List<RecipeDTO> GetUsersRecipes(string userId)
+        {
+            var userRecipesId = Database.RecipeClientProfileManager.FindRecipesByUserId(userId);
+            var recipes = new List<RecipeDTO>();
+            foreach (var item in userRecipesId)
+            {
+                var recipe = GetRecipeById(item.RecipeId);
+                recipes.Add(recipe);
+            }
+            return recipes;
+            
+        }
+
+        public void DeleteRecipeFromUserList(int recipeId, string userId)
+        {
+           var recipeUser= Database.RecipeClientProfileManager.FindByRecipeAndUserId(userId, recipeId);
+            if (recipeUser != null)
+            {
+                Database.RecipeClientProfileManager.Remove(recipeUser);
+            }
+        }
     }
 
 

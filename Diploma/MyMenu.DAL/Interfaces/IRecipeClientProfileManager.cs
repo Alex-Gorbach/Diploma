@@ -1,5 +1,6 @@
 ﻿using DAL.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace DAL.Interfaces
 {
@@ -7,5 +8,7 @@ namespace DAL.Interfaces
     {
         void Create(RecipeClientProfile item);
         RecipeClientProfile FindByRecipeAndUserId(string userId, int recipeId);
+        List<RecipeClientProfile> FindRecipesByUserId(string userId);
+        void Remove(RecipeClientProfile recipeUser);
     }
 }

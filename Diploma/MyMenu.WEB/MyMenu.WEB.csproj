@@ -247,6 +247,7 @@
     <Content Include="Views\Account\UsersProfile.cshtml" />
     <Content Include="Views\Home\SearchRecipe.cshtml" />
     <Content Include="Views\Home\_Items.cshtml" />
+    <Content Include="Views\Account\_UsersRecipesTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

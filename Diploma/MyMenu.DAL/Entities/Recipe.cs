@@ -7,9 +7,6 @@ namespace MyMenu.DAL.Entities
 {
     public class Recipe
     {
-        //public Recipe() {
-        //    this.RecipeClientProfile = new HashSet<RecipeClientProfile>();
-        //}
 
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RecipeId { get; set; }

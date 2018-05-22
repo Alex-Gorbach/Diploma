@@ -47,7 +47,6 @@ namespace MyMenu.WEB.Controllers
         public ActionResult SerchByArray(string[] searchStr)
         {
             var result = UserService.GetRecipeByProductsName(searchStr);
-             
             return PartialView("_Items",result);
         }
 

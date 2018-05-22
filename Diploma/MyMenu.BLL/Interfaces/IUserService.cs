@@ -20,5 +20,7 @@ namespace MyMenu.BLL.Interfaces
         List<RecipeDTO> GetRecipeByProductsName(string[] productsName);
         bool AddRecipeToUserList(string userId, int recipeId);
         bool ChekIfInUsersList(string userId, int recipeId);
+        List<RecipeDTO> GetUsersRecipes(string userId);
+        void DeleteRecipeFromUserList(int recipeId, string userId);
     }
 }

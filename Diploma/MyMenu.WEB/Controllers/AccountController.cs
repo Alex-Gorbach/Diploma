@@ -9,6 +9,7 @@ using BLL.DTO;
 using System.Security.Claims;
 using MyMenu.BLL.Interfaces;
 using MyMenu.BLL.Infrastructure;
+using Microsoft.AspNet.Identity;
 
 namespace MyMenu.WEB.Controllers
 {
@@ -31,18 +32,34 @@ namespace MyMenu.WEB.Controllers
             }
 
 
-            public ActionResult Login()
-            {
-                return View();
-            }
-
-        public async Task<ActionResult> UsersProfile(string email)
+        public ActionResult Login()
         {
-            var user = await UserService.GetUserByEmail(email);
+            return View();
+        }
+
+        public async Task<ActionResult> UsersProfile()
+        {
+            var userEmail = User.Identity.Name;
+            var user = await UserService.GetUserByEmail(userEmail);
             return View(user);
         }
 
- 
+        public ActionResult GetUsersRecipes()
+        {
+            var userId = User.Identity.GetUserId();
+            var usersRecipes = UserService.GetUsersRecipes(userId);
+            return PartialView("_UsersRecipesTable", usersRecipes);
+        }
+
+        public ActionResult DeleteRecipeFromUserList(int recipeId)
+        {
+            var userId = User.Identity.GetUserId();
+            UserService.DeleteRecipeFromUserList(recipeId, userId);
+           
+            return RedirectToAction("UsersProfile");
+        }
+
+
 
         public ActionResult Update()
         {
