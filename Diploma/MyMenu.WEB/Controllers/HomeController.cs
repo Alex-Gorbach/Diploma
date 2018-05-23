@@ -43,6 +43,7 @@ namespace MyMenu.WEB.Controllers
             return View();
         }
 
+
         [HttpPost]
         public ActionResult SerchByArray(string[] searchStr)
         {
@@ -50,13 +51,21 @@ namespace MyMenu.WEB.Controllers
             return PartialView("_Items",result);
         }
 
-        [HttpPost]
+        public ActionResult SearchRecipeByName(string search)
+        {
+            var result = UserService.GetRecipeByName(search);
+           return View(result);
+        }
+
+
+       [HttpPost]
         public bool AddToRecUserRecipeList(int recipeId)
         {
             var userId = User.Identity.GetUserId();
             var result=UserService.AddRecipeToUserList(userId,recipeId);
             return result;
         }
+
         
         [HttpPost]
         public ActionResult ChekifInList(string[] recipeId)

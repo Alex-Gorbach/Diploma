@@ -3,23 +3,30 @@
 @{
     ViewBag.Title = "UsersProfile";
 }
+<link href="~/Content/RecipeCss.css" rel="stylesheet" />
 
-<h2>User profile</h2>
+<div class="commonDiv">
+    <h2>User profile</h2>
+    <div class="user">
+        <div class="usersInfoInfo">
+            <div><img src="~/Content/Load.gif" /></div>
+            <div class="usersInfo">
+                <span class="name">@Html.DisplayFor(model => model.Name)</span>
+                <span class="email">@User.Identity.Name</span>
+            </div>
 
-<div class="user">
-    <div><img src="~/Content/flat,1000x1000,075,f.u5.jpg" /></div>
-    <div class="usersInfo">
-        <span class="name">@Html.DisplayFor(model=>model.Name) </span>
-        <span class="email">@User.Identity.Name</span>
+        </div>
+        <div class="usersRecipes">
+
+            @Html.Action("GetUsersRecipes");
+
+        </div>
     </div>
+
+
     <div class="settings">
-        <input type="submit" value="Edit" />
-        <input type="submit" value="Delete account" />
-    </div>
-    <div class="usersRecipes">
-      
-        @Html.Action("GetUsersRecipes");
-
+        <input type="submit" class="btn btn-primary btn-sm" value="Edit" style="font-size:15px;" />
+        <input type="submit" class="btn btn-primary btn-sm" style="background-color:#ed5e68; font-size:15px" value="Delete account" />
     </div>
 </div>
 

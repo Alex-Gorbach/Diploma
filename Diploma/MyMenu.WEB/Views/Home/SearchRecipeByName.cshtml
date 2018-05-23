@@ -1,0 +1,18 @@
+﻿@model IEnumerable<BLL.DTO.RecipeDTO>
+
+@{
+    ViewBag.Title = "SearchRecipeByName";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+</head>
+<body>
+    <div id="scrolList">
+        @Html.Partial("_Items", Model);
+    </div>
+</body>
+</html>

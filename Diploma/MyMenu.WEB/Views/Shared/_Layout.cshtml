@@ -9,7 +9,7 @@
     <link href="~/Content/SearchCss.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body background="~/Content/background.png">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -25,33 +25,37 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    @using (Html.BeginForm("SearchRecipe","Home"))
-                    {
-                    <li>
-                        <div class="topnav">
-                            <div class="search-container">
-                                    <input type="text" placeholder="Search.." name="search">
-                                    <button type="submit"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                    </li>
-                    }
+                    
+                   
                 </ul>
                 
                 <ul class="nav navbar-nav navbar-right">
-                    @if (!User.Identity.IsAuthenticated)
-                    {
-            <li>@Html.ActionLink("Login", "Login", "Account")</li>
-            <li>@Html.ActionLink("Registration", "Register", "Account")</li>
-}
-else
-{
-            <li>
-                @Html.ActionLink("Hello " + @User.Identity.Name, "UsersProfile", "Account", new { email = User.Identity.Name }, null)
-            </li>
-            <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
-}
-
+                <li>
+                    <div class="topnav" style="">
+                        <div class="search-container" style="display: flex;">
+                            @using (Html.BeginForm("SearchRecipeByName", "Home"))
+                            {
+                                    <input type="text" style="border-bottom-left-radius:2px;border-top-left-radius:2px" placeholder="Search.." name="search">
+                            }
+                            @using (Html.BeginForm("SearchRecipe", "Home"))
+                            {
+                                <button type="submit" style="border-bottom-right-radius:2px;border-top-right-radius:2px;background-color:#cad8c5;"><i class="fa fa-search"> Advanced</i></button>
+                            }
+                        </div>
+                    </div>
+                </li>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                <li>@Html.ActionLink("Registration", "Register", "Account")</li>
+                }
+                else
+                {
+                <li>
+                    @Html.ActionLink("Hello " + @User.Identity.Name, "UsersProfile", "Account", new { email = User.Identity.Name }, null)
+                </li>
+                <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                }
                 </ul>
             </div>
         </div>

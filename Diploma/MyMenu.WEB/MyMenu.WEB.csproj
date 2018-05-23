@@ -195,8 +195,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\flat,1000x1000,075,f.u5.jpg" />
+    <Content Include="Content\Load.gif" />
+    <Content Include="Content\loading.gif" />
     <Content Include="Content\loading_spinner.gif" />
+    <Content Include="Content\RecipeCss.css" />
     <Content Include="Content\SearchCss.css" />
+    <Content Include="Content\SerchCss2.css" />
+    <Content Include="Content\background.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -206,6 +211,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\LoadingMeat.aco" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -248,6 +254,7 @@
     <Content Include="Views\Home\SearchRecipe.cshtml" />
     <Content Include="Views\Home\_Items.cshtml" />
     <Content Include="Views\Account\_UsersRecipesTable.cshtml" />
+    <Content Include="Views\Home\SearchRecipeByName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,34 +2,34 @@
 @{
     ViewBag.Title = "List of favorites";
 }
-
-<h2>List of favorites</h2>
-<p>
-    @Html.ActionLink("Добавить игрока", "Create")
-</p>
-<table id="tableBody">
-    <tr>
-        <th>Наимменование рецепта</th>
-        <th>Рейтиниг</th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<link href="~/Content/RecipeCss.css" rel="stylesheet" />
+<div style="background-color:#ffffff" class="commonDiv">
+    <h2>List of favorites</h2>
+    <table id="tableBody" class="table">
         <tr>
-            <td>
-                @Html.ActionLink(@item.Name, "Recipe", "Home", new { id = item.RecipeId }, new { @class = "navbar-brand" })
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RecipeId)
-            </td>
-            <td>
-                @Ajax.ActionLink("Удалить", "DeleteRecipeFromUserList", new { recipeId = item.RecipeId },
-               new AjaxOptions { UpdateTargetId = "tableBody",OnSuccess= "RemoveRow", Confirm = "Are you Sure You Want to Delete " + @item.Name, })
-            </td>
+            <th>Наимменование рецепта</th>
+            <th>Рейтиниг</th>
+            <th>Действие</th>
+            <th></th>
         </tr>
-    }
-</table>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(@item.Name, "Recipe", "Home", new { id = item.RecipeId }, new { @class = "navbar-brand" })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RecipeId)
+                </td>
+                <td>
+                    @Ajax.ActionLink("Удалить", "DeleteRecipeFromUserList", new { recipeId = item.RecipeId },
+                        new AjaxOptions { UpdateTargetId = "tableBody", OnSuccess = "RemoveRow", Confirm = "Are you Sure You Want to Delete " + @item.Name, })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
 
 <script>
     function RemoveRow() {

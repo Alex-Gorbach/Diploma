@@ -2,52 +2,77 @@
     ViewBag.Title = "SearchRecipe";
 }
 
+
 <!DOCTYPE html>
 <html>
 <head>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/SerchCss2.css" rel="stylesheet" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="~/Content/RecipeCss.css" rel="stylesheet" />
 </head>
 
 <body>
-    <input id="productInput" type="text" value="" placeholder="product name..." />
-    <input type="button" value="add prodct to search" onclick="addProductToTable()" />
-    <input type="submit" value="search" id="ajaxSearch"/>
-    <div>
-        <table id="productsTable"></table>
+    <div class="commonDiv">
+        <h2>Search by product set</h2>
+        <div class="container" style="display: flex;margin-top:35px">
+            <div class="search" style="display: flex;">
+                <input id="productInput" type="text" value="" style="font-size: 16px;height: 35px;margin-right: 1px;" class="form-control input-sm" maxlength="64" placeholder="Product name..." />
+                <input type="button" style="font-size: 16px;" value="add prodct to search" class="btn btn-primary btn-sm" onclick="addProductToTable()" />
+                <input type="submit" style="margin-left:2px;font-size: 16px; background-color:#58b957;border-color: #58b957;" value="search" class="btn btn-primary btn-sm" id="ajaxSearch" />
+            </div>
+        </div>
+
+        <div class="tableDiv">
+            <table id="productsTable" class="table" style="max-width: 40%; margin-top: 20px;">
+                <thead>
+                    <tr><th>Products set</th></tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+
+        <div id="searchResult"> </div>
+
+        <div id="loading"><img style="" src='@Url.Content("~/Content/Load.gif")'></div>
     </div>
 
-    <div id="searchResult">
-        @*@{Html.RenderPartial("_Items", Model)}*@
-    </div>
-
+  
 </body>
 </html>
 
 
 <script>
+    $('div#loading').hide();
+
     function addProductToTable() {
-                var element = document.getElementById("productInput");
-                var productName = element.value;
 
-                var table = document.getElementById("productsTable");
-                var row = table.insertRow(0);
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
+        var element = document.getElementById("productInput");
+        var productName = element.value;
 
-                cell1.innerHTML = productName;
-                cell2.innerHTML = "<input type='button' value='x'  id='deleteButton' onclick='removeProduct(this)'>";
-            }
+        var table = document.getElementById("tableBody");
+        var row = table.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
 
-            var arr = [];
-            function removeProduct(r) {
-                var i = r.parentNode.parentNode.rowIndex;
-                document.getElementById("productsTable").deleteRow(i);
-                arr.pop(i);
-            }
+        cell1.innerHTML = productName;
+        cell2.innerHTML = "<input type='button' value='&#10060' style='background-color:#ed5e68; margin-bottom:3px'  id='deleteButton' class='btn btn - primary btn - sm' onclick='removeProduct(this)'>";
+    }
+
+    var arr = [];
+    function removeProduct(r) {
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("productsTable").deleteRow(i);
+        arr.pop(i);
+    }
 
 
     $('#ajaxSearch').click(function () {
-        var table = document.getElementById('productsTable');
+        $('div#loading').show();
+        var table = document.getElementById('tableBody');
         for (var r = 0, n = table.rows.length; r < n; r++) {
             arr.push(table.rows[r].cells[0].innerHTML)
         }
@@ -64,30 +89,31 @@
 
     function successFunc(data, status) {
         $('#searchResult').html(data);
+        $('div#loading').hide();
     }
 
     function errorFunc(errorData) {
-        alert(errorData);
+        var elem = document.getElementById("searchResult");
+        elem.innerHTML = "<h2>For a given set of products nothing found &#9785;</h2>";
     }
 
 
+    var page = 0;
+    var _inCallback = false;
+    function loadItems(data) {
+        if (page > -1 && !_inCallback) {
+            _inCallback = true;
+            page++;
 
-            var page = 0;
-            var _inCallback = false;
-            function loadItems(data) {
-                if (page > -1 && !_inCallback) {
-                    _inCallback = true;
-                    page++;
-
-                    if (data != '') {
+            if (data != '') {
                 $("#searchResult").append(data);
-                    }
-                    else {
-                        page = -1;
-                    }
-                    _inCallback = false;
-                }
             }
+            else {
+                page = -1;
+            }
+            _inCallback = false;
+        }
+    }
 </script>
 
 

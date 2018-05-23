@@ -13,41 +13,60 @@
     <script src="~/Scripts/MicrosoftAjax.js"></script>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/MicrosoftMvcAjax.js"></script>
+    <link href="~/Content/RecipeCss.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="recipe">
-        <h2>@Html.DisplayFor(model => model.Name)</h2>
-        <img src="@Html.DisplayFor(model => model.ImageHref)" />
+    <div class="commonDiv">
+        <div style="margin-left: 11px;">
+            <h2>@Html.DisplayFor(model => model.Name)</h2>
+        </div>
+        <div class="recipeInfo">
+            <div class="imgDiv">
+                <img class="img-thumbnail" style="width: 65%;" src="@Html.DisplayFor(model => model.ImageHref)" />
+            </div>
 
-        @if (User.Identity.IsAuthenticated)
-        {
-            using (Ajax.BeginForm("AddToRecUserRecipeList", "Home", new { recipeId = Model.RecipeId },
+            <div class="ingredientsDiv" style="width: 310px;margin-top: 10px;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="background-color: #cad8c5;">
+                        <div class="title">Ингредиенты:</div>
+                    </li>
+                    @for (int i = 0; i < Model.Products.Count; i++)
+                    {
+                    <li class="list-group-item" style="max-width:300px;min-width:300px">
+
+                        <div class="ingredients">
+                            <span class="value">@Model.ProductCopasity.ElementAt(i)</span>
+                            <span class="type">@Model.Products.ElementAt(i).Unit</span>
+                            <span class="name">@Model.Products.ElementAt(i).Name</span>
+                        </div>
+                    </li>
+                    }
+                </ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+
+                using (Ajax.BeginForm("AddToRecUserRecipeList", "Home", new { recipeId = Model.RecipeId },
                 new AjaxOptions { OnSuccess = "onuploadsuccess", OnFailure = "onuploadfailor", HttpMethod = "POST" },
                 new { enctype = "multipart/form-data" }))
-            {
-                <input type="submit" id="addToListButton" value="Add recipe" />
-            }
-        }
+                {
+                    <div class="statusRecipe" style="display:flex;">
+                        <input type="submit" style=" font-size: 17px;" class="btn btn-primary btn-sm" id="addToListButton" value="Add recipe" />
+                    </div>
+                 }
 
-        @for (int i = 0; i < Model.Products.Count; i++)
-        {
-            <div class="ingredients">
-                <span class="value">@Model.ProductCopasity.ElementAt(i)</span>
-                <span class="type">@Model.Products.ElementAt(i).Unit</span>
-                <span class="name">@Model.Products.ElementAt(i).Name</span>
+                    }
+                <div style="display: none;">
+                    <p id="recipeIdVal">@Model.RecipeId</p>
+                </div>
             </div>
-        }
-
-        <div class="description">
-            <p>
-                @Html.DisplayFor(model => model.Description)
-            </p>
         </div>
 
-        <div style="display: none;">
-            <p id="recipeIdVal">@Model.RecipeId</p>
-        </div>
+
     </div>
+    <div class="description">
+        <p style="font-size:14px">@Html.DisplayFor(model => model.Description)</p>
+    </div>
+   
 </body>
 </html>
 
