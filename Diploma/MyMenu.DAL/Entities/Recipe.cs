@@ -14,8 +14,9 @@ namespace MyMenu.DAL.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string ImageHref { get; set; }
+        public double Rank { get; set; }
 
         public virtual ICollection<RecipeClientProfile> RecipeClientProfile { get; set; }
-
+        public Rating Rating { get; set; } 
     }
 }

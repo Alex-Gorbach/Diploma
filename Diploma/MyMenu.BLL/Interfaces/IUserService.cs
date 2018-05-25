@@ -22,5 +22,6 @@ namespace MyMenu.BLL.Interfaces
         bool ChekIfInUsersList(string userId, int recipeId);
         List<RecipeDTO> GetUsersRecipes(string userId);
         void DeleteRecipeFromUserList(int recipeId, string userId);
+        double SetRecipeRank(int recipeId, string userId, double recipeRank);
     }
 }

@@ -6,6 +6,7 @@ using MyMenu.BLL.Infrastructure;
 using MyMenu.BLL.Interfaces;
 using MyMenu.DAL.Entities;
 using MyMenu.DAL.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -228,6 +229,29 @@ namespace MyMenu.BLL.Services
             {
                 Database.RecipeClientProfileManager.Remove(recipeUser);
             }
+        }
+
+        public double SetRecipeRank(int recipeId, string userId, double recipeRank)
+        {
+            var ratingByUser = new Rating()
+            {
+                RecipeId = recipeId,
+                UserId = userId,
+                Rank = recipeRank
+            };
+
+            Database.RankManager.Create(ratingByUser);
+
+            var updatedRank = ComputeRank(recipeId);
+            return updatedRank;
+        }
+
+        private double ComputeRank(int recipeId)
+        {
+            var ranks = Database.RankManager.GetRecipeRanksById(recipeId);
+            var resultRecipeRank = ranks.Sum(x => x.Rank) / ranks.Count;
+            Database.RecipeManager.UpdateRank(recipeId, resultRecipeRank);
+            return resultRecipeRank;
         }
     }
 

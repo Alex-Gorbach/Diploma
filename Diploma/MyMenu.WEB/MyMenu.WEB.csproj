@@ -255,9 +255,11 @@
     <Content Include="Views\Home\_Items.cshtml" />
     <Content Include="Views\Account\_UsersRecipesTable.cshtml" />
     <Content Include="Views\Home\SearchRecipeByName.cshtml" />
+    <Content Include="Views\Home\Rating.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Ratings\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

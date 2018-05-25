@@ -57,6 +57,18 @@ namespace MyMenu.WEB.Controllers
            return View(result);
         }
 
+        public ActionResult SetRankByUser( int recipeId,double recipeRank)
+        {
+            var userId = User.Identity.GetUserId();
+            var result = UserService.SetRecipeRank(recipeId, userId, recipeRank);
+            return Json(result);
+        }
+
+        public ActionResult GetRanks(RecipeDTO recipe)
+        {
+            return PartialView("Rating", recipe);
+        }
+
 
        [HttpPost]
         public bool AddToRecUserRecipeList(int recipeId)

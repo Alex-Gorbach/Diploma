@@ -57,6 +57,7 @@
     <Compile Include="Entities\ApplicationRole.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\ClientProfile.cs" />
+    <Compile Include="Entities\Rating.cs" />
     <Compile Include="Entities\RecipeClientProfile.cs" />
     <Compile Include="Entities\RecipeProduct.cs" />
     <Compile Include="Entities\Product.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Interfaces\IClientManager.cs" />
     <Compile Include="Interfaces\IProductManager.cs" />
+    <Compile Include="Interfaces\IRankManager.cs" />
     <Compile Include="Interfaces\IRecipeClientProfileManager.cs" />
     <Compile Include="Interfaces\IRecipeManager.cs" />
     <Compile Include="Interfaces\IRecipeProductManager.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Repositories\ClientManager.cs" />
     <Compile Include="Repositories\IdentityUnitOfWork.cs" />
     <Compile Include="Repositories\ProductManager.cs" />
+    <Compile Include="Repositories\RankManager.cs" />
     <Compile Include="Repositories\RecipeClientProfileManager.cs" />
     <Compile Include="Repositories\RecipeManager.cs" />
     <Compile Include="Repositories\RecipeProductManager.cs" />

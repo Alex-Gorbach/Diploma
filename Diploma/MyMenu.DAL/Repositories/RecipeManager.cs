@@ -46,5 +46,13 @@ namespace DAL.Repositories
             var result = Database.Recipes.Find(id);
             return result;
         }
+
+        public void UpdateRank(int recipeId, double resultRecipeRank)
+        {
+            var recipe = new Recipe() {RecipeId=recipeId, Rank = resultRecipeRank };
+            Database.Recipes.Attach(recipe);
+            Database.Entry(recipe).Property(x => x.Rank).IsModified = true;
+            Database.SaveChanges();
+        }
     }
 }

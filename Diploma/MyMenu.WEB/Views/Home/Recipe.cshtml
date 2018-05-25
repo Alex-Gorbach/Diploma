@@ -45,16 +45,16 @@
                 @if (User.Identity.IsAuthenticated)
                 {
 
-                using (Ajax.BeginForm("AddToRecUserRecipeList", "Home", new { recipeId = Model.RecipeId },
-                new AjaxOptions { OnSuccess = "onuploadsuccess", OnFailure = "onuploadfailor", HttpMethod = "POST" },
-                new { enctype = "multipart/form-data" }))
-                {
+                    using (Ajax.BeginForm("AddToRecUserRecipeList", "Home", new { recipeId = Model.RecipeId },
+                    new AjaxOptions { OnSuccess = "onuploadsuccess", OnFailure = "onuploadfailor", HttpMethod = "POST" },
+                    new { enctype = "multipart/form-data" }))
+                    {
                     <div class="statusRecipe" style="display:flex;">
                         <input type="submit" style=" font-size: 17px;" class="btn btn-primary btn-sm" id="addToListButton" value="Add recipe" />
                     </div>
-                 }
-
                     }
+
+                }
                 <div style="display: none;">
                     <p id="recipeIdVal">@Model.RecipeId</p>
                 </div>
@@ -66,7 +66,7 @@
     <div class="description">
         <p style="font-size:14px">@Html.DisplayFor(model => model.Description)</p>
     </div>
-   
+    @Html.Action("GetRanks", Model);
 </body>
 </html>
 
@@ -75,6 +75,14 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
 <script type="text/javascript">
+
+    function onupsuccessRanked(data) {
+        alert("YEs")
+    }
+
+    function onRankedfailor(errorData) {
+        alert("No");
+    }
 
     $(document).ready(function () {
         checkIfInListAjax();

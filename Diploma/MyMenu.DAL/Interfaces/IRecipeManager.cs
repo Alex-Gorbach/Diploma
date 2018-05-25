@@ -10,5 +10,6 @@ namespace DAL.Interfaces
         List<Recipe> GetRecipeByName(string recipeName);
         List<Recipe> GetAllRepices(int itemsToSkip,int pageSize);
         Recipe GetRecipeById(int id);
+        void UpdateRank(int recipeId, double resultRecipeRank);
     }
 }

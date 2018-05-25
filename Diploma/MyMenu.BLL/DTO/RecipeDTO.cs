@@ -10,5 +10,6 @@ namespace BLL.DTO
         public string ImageHref { get; set; }
         public List<ProductDTO> Products {get; set;}
         public List<string> ProductCopasity { get; set; }
+        public double Rating { get; set; }
     }
 }

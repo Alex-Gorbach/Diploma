@@ -21,6 +21,8 @@ namespace MyMenu.DAL.Repositories
         private IProductManager productManager;
         private IRecipeProductManager recipeProductManager;
         private IRecipeClientProfileManager recipeClientProfileManager;
+        private IRankManager rankManager;
+
 
 
         public IdentityUnitOfWork(string connectionString)
@@ -33,6 +35,7 @@ namespace MyMenu.DAL.Repositories
             productManager=new ProductManager(db);
             recipeProductManager=new RecipeProductManager(db);
             recipeClientProfileManager = new RecipeClientProfileManager(db);
+            rankManager = new RankManager(db);
         }
 
         public ApplicationUserManager UserManager
@@ -59,6 +62,7 @@ namespace MyMenu.DAL.Repositories
         {
             get { return recipeManager; }
         }
+
         public IRecipeProductManager RecipeProductManager
         {
             get { return recipeProductManager; }
@@ -68,6 +72,12 @@ namespace MyMenu.DAL.Repositories
         {
             get { return recipeClientProfileManager; }
         }
+
+        public IRankManager RankManager
+        {
+            get { return rankManager; }
+        }
+
 
         public async Task SaveAsync()
         {
@@ -94,6 +104,7 @@ namespace MyMenu.DAL.Repositories
                     productManager.Dispose();
                     recipeProductManager.Dispose();
                     recipeClientProfileManager.Dispose();
+                    rankManager.Dispose();
                 }
                 this.disposed = true;
             }

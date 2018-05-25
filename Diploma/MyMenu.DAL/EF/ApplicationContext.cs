@@ -14,6 +14,7 @@ namespace MyMenu.DAL.EF
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<RecipeProduct> RecipesProducts { get; set; }
         public DbSet<RecipeClientProfile> RecipeClientProfiles { get; set; }
+        public DbSet<Rating> Rating { get; set; }
 
     }
 
