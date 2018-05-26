@@ -11,5 +11,6 @@ namespace DAL.Interfaces
     {
         void Create(Rating item);
         List<Rating> GetRecipeRanksById(int recipeId);
+        List<Rating> GetRankByUserRecipeId(string userId, int recipeId);
     }
 }

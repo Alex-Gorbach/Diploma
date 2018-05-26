@@ -239,9 +239,8 @@ namespace MyMenu.BLL.Services
                 UserId = userId,
                 Rank = recipeRank
             };
-
-            Database.RankManager.Create(ratingByUser);
-
+            var check = CheckIfCommitRank(userId, recipeId);
+                Database.RankManager.Create(ratingByUser);
             var updatedRank = ComputeRank(recipeId);
             return updatedRank;
         }
@@ -252,6 +251,16 @@ namespace MyMenu.BLL.Services
             var resultRecipeRank = ranks.Sum(x => x.Rank) / ranks.Count;
             Database.RecipeManager.UpdateRank(recipeId, resultRecipeRank);
             return resultRecipeRank;
+        }
+
+        public bool CheckIfCommitRank(string userId, int recipeId)
+        {
+            var result = Database.RankManager.GetRankByUserRecipeId(userId, recipeId);
+            if (result.Count == 0)
+            {
+                return true;
+            }
+            else return false;
         }
     }
 

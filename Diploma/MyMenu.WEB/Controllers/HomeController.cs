@@ -48,20 +48,26 @@ namespace MyMenu.WEB.Controllers
         public ActionResult SerchByArray(string[] searchStr)
         {
             var result = UserService.GetRecipeByProductsName(searchStr);
-            return PartialView("_Items",result);
+            return PartialView("_Items", result);
         }
 
         public ActionResult SearchRecipeByName(string search)
         {
             var result = UserService.GetRecipeByName(search);
-           return View(result);
+            return View(result);
         }
+
 
         public ActionResult SetRankByUser( int recipeId,double recipeRank)
         {
             var userId = User.Identity.GetUserId();
-            var result = UserService.SetRecipeRank(recipeId, userId, recipeRank);
-            return Json(result);
+            var check = UserService.CheckIfCommitRank(userId, recipeId);
+            if (check) { 
+                var result = UserService.SetRecipeRank(recipeId, userId, recipeRank);
+                var recipe = new RecipeDTO() { Rank = result };
+                return PartialView("Rating", recipe);
+            }
+            return PartialView("Rating", null);
         }
 
         public ActionResult GetRanks(RecipeDTO recipe)

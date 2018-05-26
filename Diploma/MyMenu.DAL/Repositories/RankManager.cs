@@ -35,6 +35,10 @@ namespace DAL.Repositories
             return result;
         }
 
-       
+        public List<Rating> GetRankByUserRecipeId(string userId, int recipeId)
+        {
+            var result = Database.Rating.Where(x => x.UserId == userId && x.RecipeId == recipeId).ToList();
+            return result;
+        }
     }
 }

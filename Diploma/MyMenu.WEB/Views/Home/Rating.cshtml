@@ -1,16 +1,37 @@
 ﻿@model BLL.DTO.RecipeDTO
 
 
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/MicrosoftAjax.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/MicrosoftMvcAjax.js"></script>
+<link href="~/Content/RecipeCss.css" rel="stylesheet" />
+
 <div class="container">
-    <div class="ratings" style="display:flex">
-        @for (int i = 0; i < int.Parse(Model.Rating.ToString()); i++)
+    <div class="ratings" id="rating" style="display:flex">
+        @for (int i = 0; i < Convert.ToInt32(Math.Round(Model.Rank)); i++)
         {
-            <div>@Ajax.ActionLink(" ", "SetRankByUser", new { recipId = Model.RecipeId, recipeRank = i }, new AjaxOptions { UpdateTargetId = Model.Rating.ToString(), InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, new { @class = "glyphicon glyphicon-star", @style = "color:#6f7dde" })</div>
+
+            <div>@Ajax.ActionLink(" ", "SetRankByUser", new { recipeId = Model.RecipeId, recipeRank = i }, new AjaxOptions { UpdateTargetId = "rating", OnSuccess = "succesRanked", OnFailure = "failerToRank", HttpMethod = "GET" }, new { @class = "glyphicon glyphicon-star", @style = "color:#6f7dde" })</div>
         }
 
-        @for (int i = int.Parse(Model.Rating.ToString()); i < 10; i++)
+        @for (int i = Convert.ToInt32(Math.Round(Model.Rank)); i < 10; i++)
         {
-            <div>@Ajax.ActionLink(" ", "SetRankByUser", new { recipId = Model.RecipeId, recipeRank = i }, new AjaxOptions { UpdateTargetId = Model.Rating.ToString(), InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, new { @class = "glyphicon glyphicon-star-empty", @style = "color:#6f7dde" })</div>
+            <div>@Ajax.ActionLink(" ", "SetRankByUser", new { recipeId = Model.RecipeId, recipeRank = i }, new AjaxOptions { UpdateTargetId = "rating", OnSuccess = "succesRanked", OnFailure = "failerToRank", HttpMethod = "GET" }, new { @class = "glyphicon glyphicon-star-empty", @style = "color:#6f7dde" })</div>
         }
     </div>
+    <div id="renkStatusForUser">
+        
+    </div>
 </div>
+
+<script>
+    function succesRanked(data) {
+        var elem = document.getElementById("renkStatusForUser").innerHTML="Succesly ranked!!!";
+    }
+
+    function failerToRank(errorData) {
+        var elem = document.getElementById("renkStatusForUser").innerHTML = "Already ranked by you.";
+    }
+</script>

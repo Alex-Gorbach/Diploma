@@ -23,5 +23,6 @@ namespace MyMenu.BLL.Interfaces
         List<RecipeDTO> GetUsersRecipes(string userId);
         void DeleteRecipeFromUserList(int recipeId, string userId);
         double SetRecipeRank(int recipeId, string userId, double recipeRank);
+        bool CheckIfCommitRank(string userId, int recipeId);
     }
 }
