@@ -24,5 +24,6 @@ namespace MyMenu.BLL.Interfaces
         void DeleteRecipeFromUserList(int recipeId, string userId);
         double SetRecipeRank(int recipeId, string userId, double recipeRank);
         bool CheckIfCommitRank(string userId, int recipeId);
+        List<RecipeDTO> GetTopFiveRankedRacipes();
     }
 }

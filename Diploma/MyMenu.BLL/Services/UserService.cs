@@ -262,6 +262,13 @@ namespace MyMenu.BLL.Services
             }
             else return false;
         }
+
+        public List<RecipeDTO> GetTopFiveRankedRacipes()
+        {
+            var rankedRecipes = Database.RecipeManager.GetTopFiveRanked();
+            var recipes = Mapper.Map<List<Recipe>, List<RecipeDTO>>(rankedRecipes);
+            return recipes;
+        }
     }
 
 

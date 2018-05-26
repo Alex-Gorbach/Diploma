@@ -8,18 +8,20 @@
 <div class="commonDiv">
     <h2>User profile</h2>
     <div class="user">
-        <div class="usersInfoInfo">
-            <div><img src="~/Content/Load.gif" /></div>
-            <div class="usersInfo">
-                <span class="name">@Html.DisplayFor(model => model.Name)</span>
-                <span class="email">@User.Identity.Name</span>
+        <div style="display:flex">
+            <div class="usersInfoInfo">
+                <div><img src="~/Content/Load.gif" /></div>
+                <div class="usersInfo">
+                    <span class="name">@Html.DisplayFor(model => model.Name)</span>
+                    <span class="email">@User.Identity.Name</span>
+                </div>
             </div>
-
+            <div id=" topRecipes">
+                @Html.Action("GetTopRecipes");
+            </div>
         </div>
         <div class="usersRecipes">
-
             @Html.Action("GetUsersRecipes");
-
         </div>
     </div>
 

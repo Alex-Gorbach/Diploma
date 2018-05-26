@@ -10,26 +10,27 @@ using System.Security.Claims;
 using MyMenu.BLL.Interfaces;
 using MyMenu.BLL.Infrastructure;
 using Microsoft.AspNet.Identity;
+using System;
 
 namespace MyMenu.WEB.Controllers
 {
     public class AccountController : Controller
     {
-            private IUserService UserService
+        private IUserService UserService
+        {
+            get
             {
-                get
-                {
-                    return HttpContext.GetOwinContext().GetUserManager<IUserService>();
-                }
+                return HttpContext.GetOwinContext().GetUserManager<IUserService>();
             }
+        }
 
-            private IAuthenticationManager AuthenticationManager
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
             {
-                get
-                {
-                    return HttpContext.GetOwinContext().Authentication;
-                }
+                return HttpContext.GetOwinContext().Authentication;
             }
+        }
 
 
         public ActionResult Login()
@@ -51,11 +52,21 @@ namespace MyMenu.WEB.Controllers
             return PartialView("_UsersRecipesTable", usersRecipes);
         }
 
+        public ActionResult GetTopRecipes()
+        {
+            var result = UserService.GetTopFiveRankedRacipes();
+            foreach (var item in result)
+            {
+               item.Rank= Math.Round(item.Rank,1);
+            }
+            return PartialView("_TopFiveRecipes", result);
+        }
+
         public ActionResult DeleteRecipeFromUserList(int recipeId)
         {
             var userId = User.Identity.GetUserId();
             UserService.DeleteRecipeFromUserList(recipeId, userId);
-           
+
             return RedirectToAction("UsersProfile");
         }
 

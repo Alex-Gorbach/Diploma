@@ -40,5 +40,6 @@ namespace DAL.Repositories
             var result = Database.Rating.Where(x => x.UserId == userId && x.RecipeId == recipeId).ToList();
             return result;
         }
+
     }
 }

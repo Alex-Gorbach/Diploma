@@ -1,0 +1,28 @@
+﻿@model IEnumerable<BLL.DTO.RecipeDTO>
+@{
+    ViewBag.Title = "List of favorites";
+}
+<link href="~/Content/RecipeCss.css" rel="stylesheet" />
+<div style="background-color:#ffffff" class="commonDiv">
+    <h2>Recomended for you</h2>
+    <table id="tableBody" class="table">
+        <tr>
+            <th>Recipe name</th>
+            <th>Rank</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(@item.Name, "Recipe", "Home", new { id = item.RecipeId }, new { @class = "navbar-brand" })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem =>item.Rank)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
