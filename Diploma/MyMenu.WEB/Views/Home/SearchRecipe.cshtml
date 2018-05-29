@@ -20,9 +20,9 @@
         <h2>Search by product set</h2>
         <div class="container" style="display: flex;margin-top:35px">
             <div class="search" style="display: flex;">
-                <input id="productInput" type="text" value="" style="font-size: 16px;height: 35px;margin-right: 1px;" class="form-control input-sm" maxlength="64" placeholder="Product name..." />
-                <input type="button" style="font-size: 16px;" value="add prodct to search" class="btn btn-primary btn-sm" onclick="addProductToTable()" />
-                <input type="submit" style="margin-left:2px;font-size: 16px; background-color:#58b957;border-color: #58b957;" value="search" class="btn btn-primary btn-sm" id="ajaxSearch" />
+                <input id="productInput" type="text" value="" style="font-size: 16px;height: 35px;margin-right: 1px;" class="form-control input-sm" maxlength="64" placeholder="Имя продукта..." />
+                <input type="button" style="font-size: 16px;" value="Добавить продукт к поиску" class="btn btn-primary btn-sm" onclick="addProductToTable()" />
+                <input type="submit" style="margin-left:2px;font-size: 16px; background-color:#58b957;border-color: #58b957;" value="Искать" class="btn btn-primary btn-sm" id="ajaxSearch" />
             </div>
         </div>
 
@@ -94,7 +94,7 @@
 
     function errorFunc(errorData) {
         var elem = document.getElementById("searchResult");
-        elem.innerHTML = "<h2>For a given set of products nothing found &#9785;</h2>";
+        elem.innerHTML = "<h2>По заданному набору продуктов ничего не найдено. &#9785;</h2>";
     }
 
 

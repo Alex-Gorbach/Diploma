@@ -6,6 +6,6 @@ namespace WindowsFormsApp1.Core.Servise
 {
     public interface IDataService : IDisposable
     {
-        Task Create(RecipeModel recipeModel);
+        Task Create(ArborioModel recipeModel);
     }
 }

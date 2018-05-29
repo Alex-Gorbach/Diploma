@@ -50,7 +50,7 @@
                     new { enctype = "multipart/form-data" }))
                     {
                     <div class="statusRecipe" style="display:flex;">
-                        <input type="submit" style=" font-size: 17px;" class="btn btn-primary btn-sm" id="addToListButton" value="Add recipe" />
+                        <input type="submit" style=" font-size: 17px;" class="btn btn-primary btn-sm" id="addToListButton" value="Добавить в список" />
                     </div>
                     }
 
@@ -102,7 +102,7 @@
             success: function (data) {
                 if (!data) {
                     var elem = document.getElementById("addToListButton");
-                    elem.outerHTML = "<p>Already in list</p>";
+                    elem.outerHTML = "<p>Уже в вашем листе</p>";
                 }
             },
             error: errorFunc
@@ -113,7 +113,7 @@
     function alreadyInList(data) {
 
         if (!data)
-            elem.outerHTML = "<p>Already in list</p>";
+            elem.outerHTML = "<p>Уже в вашем листе</p>";
     }
 
     function errorFunc(errordata) {
@@ -122,7 +122,7 @@
     function onuploadsuccess(data) {
         var elem = document.getElementById("addToListButton");
         if (data)
-            elem.outerHTML = "<p>Successfully added</p>";
+            elem.outerHTML = "<p>Успешно добавлен</p>";
     }
 
     function onuploadfailor(errorData) {

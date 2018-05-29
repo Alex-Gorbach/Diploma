@@ -1,21 +1,21 @@
 ﻿using AngleSharp.Parser.Html;
 using System;
-using System.Threading.Tasks;
 using WindowsFormsApp1.Core.Servise;
 
 namespace WindowsFormsApp1.Core
 {
-    class ParserWorker<T> where T:class
+    class ParserWorker<T> where T : class
     {
         IParser<T> parser;
         IParserSettings parserSettings;
         DataServise dataServise = new DataServise();
         HtmlLoader loader;
         bool isActive;
- 
+
         #region Properties
 
-        public IParser<T> Parser {
+        public IParser<T> Parser
+        {
 
             get
             {
@@ -25,7 +25,7 @@ namespace WindowsFormsApp1.Core
             {
                 parser = value;
             }
-                
+
         }
 
         public IParserSettings Settings
@@ -59,10 +59,10 @@ namespace WindowsFormsApp1.Core
             this.parser = parser;
         }
 
-        public ParserWorker(IParser<T> parser,IParserSettings parserSettings):this(parser)
+        public ParserWorker(IParser<T> parser, IParserSettings parserSettings) : this(parser)
         {
             this.parserSettings = parserSettings;
-        }   
+        }
 
         public void Start()
         {
@@ -89,22 +89,23 @@ namespace WindowsFormsApp1.Core
                 var domParser = new HtmlParser();
 
                 var document = await domParser.ParseAsync(source);
-                var result=parser.ParseHref(document);
-                
+                var result = parser.ParseHref(document);
+
                 var resultHref = result as string[];
 
-                for(int j = 0; j < resultHref.Length; j++)
+                for (int j = 0; j < resultHref.Length; j++)
                 {
                     var recipeSource = await loader.GetRecipeByPageHref(resultHref[j]);
                     var recipeDocument = await domParser.ParseAsync(recipeSource);
                     var resulRecipe = parser.ParseData(recipeDocument);
                     await dataServise.Create(resulRecipe);
-                 }
+                }
+
 
                 OnNewData?.Invoke(this, result);
 
             }
-        
+
             OnCompleted?.Invoke(this);
             isActive = false;
         }

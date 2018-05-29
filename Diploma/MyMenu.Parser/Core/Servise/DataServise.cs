@@ -9,7 +9,7 @@ using WindowsFormsApp1.Core.Recepies;
 
 namespace WindowsFormsApp1.Core.Servise
 {
-    public class DataServise: IDataService
+    public class DataServise : IDataService
     {
         IUnitOfWork Database { get; set; }
         public DataServise(IUnitOfWork uow)
@@ -21,25 +21,26 @@ namespace WindowsFormsApp1.Core.Servise
             Database = new IdentityUnitOfWork("MyMenuContext");
         }
 
-        public async Task Create(RecipeModel recipeModel)
+        public async Task Create(ArborioModel arborioModel)
         {
-            var recipe = new Recipe() {
-                Name = recipeModel.Name,
-                ImageHref=recipeModel.ImageHref,
-                Description=recipeModel.Description,
+            var recipe = new Recipe()
+            {
+                Name = arborioModel.Name,
+                ImageHref = arborioModel.ImageHref,
+                Description = arborioModel.Description,
             };
             var product = new Product();
 
             RecipeProduct recipeProduct;
-            List<Product> products=null;
-            var result = Database.RecipeManager.GetRecipeByName(recipeModel.Name);
-            if (result.Count==0)
+            List<Product> products = null;
+            var result = Database.RecipeManager.GetRecipeByName(arborioModel.Name);
+            if (result.Count == 0)
             {
                 try
                 {
-                    recipe=Database.RecipeManager.Create(recipe);
+                    recipe = Database.RecipeManager.Create(recipe);
                 }
-                catch(DbEntityValidationException e)
+                catch (DbEntityValidationException e)
                 {
                     foreach (var eve in e.EntityValidationErrors)
                     {
@@ -53,11 +54,11 @@ namespace WindowsFormsApp1.Core.Servise
                     }
                     throw;
                 }
-                
-                for (int i=0;i<recipeModel.Products.Count;i++)
+
+                for (int i = 0; i < arborioModel.Products.Count; i++)
                 {
-                    products = Database.ProductManager.FindProductByName(recipeModel.Products[i]);
-                    if (products.Count!=0)
+                    products = Database.ProductManager.FindProductByName(arborioModel.Products[i]);
+                    if (products.Count != 0)
                     {
                         recipeProduct = new RecipeProduct()
                         {
@@ -65,25 +66,25 @@ namespace WindowsFormsApp1.Core.Servise
                             ProductId = products[0].ProductId,
 
                         };
-                        if (recipeModel.Units.Count >= i)
-                            recipeProduct.Number = recipeModel.Number[i];
+                        if (arborioModel.Units.Count >= i)
+                            recipeProduct.Number = arborioModel.Number[i];
 
                         Database.RecipeProductManager.Create(recipeProduct);
                     }
                     else
                     {
-                        product.Name = recipeModel.Products[i];
-                        product.Unit =recipeModel.Units[i];
+                        product.Name = arborioModel.Products[i];
+                        product.Unit = arborioModel.Units[i];
                         Database.ProductManager.Create(product);
-                        
+
                         recipeProduct = new RecipeProduct()
                         {
                             RecipeId = recipe.RecipeId,
                             ProductId = product.ProductId,
-                           
+
                         };
-                            recipeProduct.Number = recipeModel.Number[i];
-                            Database.RecipeProductManager.Create(recipeProduct);
+                        recipeProduct.Number = arborioModel.Number[i];
+                        Database.RecipeProductManager.Create(recipeProduct);
                     }
                 }
                 await Database.SaveAsync();

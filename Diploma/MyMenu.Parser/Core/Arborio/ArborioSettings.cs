@@ -2,9 +2,9 @@
 
 namespace WindowsFormsApp1.Recepies
 {
-    class RecipieSettings : IParserSettings
+    class ArborioSettings : IParserSettings
     {
-        public RecipieSettings(int start, int end)
+        public ArborioSettings(int start, int end)
         {
             StartPoint = start;
             EndPoint = end;

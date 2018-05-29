@@ -16,11 +16,11 @@ namespace WindowsFormsApp1.Core.Servise
              return destionation;
         }
 
-        public void InitCollection(RecipeModel recipeModel )
+        public void InitCollection(ArborioModel arborioModel)
         {
-            recipeModel.Number = new List<string>();
-            recipeModel.Products = new List<string>();
-            recipeModel.Units = new List<string>();
+            arborioModel.Number = new List<string>();
+            arborioModel.Products = new List<string>();
+            arborioModel.Units = new List<string>();
         }
      
     }

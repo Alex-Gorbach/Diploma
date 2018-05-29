@@ -18,13 +18,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("KusuKusu", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("ТвоеМеню", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Дом", "Index", "Home")</li>
+                    <li>@Html.ActionLink("О сайте", "About", "Home")</li>
+                    <li>@Html.ActionLink("Контакты", "Contact", "Home")</li>
                     
                    
                 </ul>
@@ -35,26 +35,26 @@
                         <div class="search-container" style="display: flex;">
                             @using (Html.BeginForm("SearchRecipeByName", "Home"))
                             {
-                                    <input type="text" style="border-bottom-left-radius:2px;border-top-left-radius:2px" placeholder="Search.." name="search">
+                                    <input type="text" style="border-bottom-left-radius:2px;border-top-left-radius:2px" placeholder="Поиск.." name="search">
                             }
                             @using (Html.BeginForm("SearchRecipe", "Home"))
                             {
-                                <button type="submit" style="border-bottom-right-radius:2px;border-top-right-radius:2px;background-color:#cad8c5;"><i class="fa fa-search"> Advanced</i></button>
+                                <button type="submit" style="border-bottom-right-radius:2px;border-top-right-radius:2px;background-color:#cad8c5;"><i class="fa fa-search"> Продвинутый</i></button>
                             }
                         </div>
                     </div>
                 </li>
                 @if (!User.Identity.IsAuthenticated)
                 {
-                <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                <li>@Html.ActionLink("Registration", "Register", "Account")</li>
+                <li>@Html.ActionLink("Вход", "Login", "Account")</li>
+                <li>@Html.ActionLink("Регистрация", "Register", "Account")</li>
                 }
                 else
                 {
                 <li>
-                    @Html.ActionLink("Hello " + @User.Identity.Name, "UsersProfile", "Account", new { email = User.Identity.Name }, null)
+                    @Html.ActionLink("Привет " + @User.Identity.Name, "UsersProfile", "Account", new { email = User.Identity.Name }, null)
                 </li>
-                <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                <li>@Html.ActionLink("Выход", "Logout", "Account")</li>
                 }
                 </ul>
             </div>

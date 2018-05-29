@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace WindowsFormsApp1.Core.Recepies
+namespace WindowsFormsApp1.Core.Edaru
 {
-    public class RecipeModel
+    public class EdaModel
     {
         public string Name { get; set; }
         public string ImageHref { get; set; }

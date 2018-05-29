@@ -1,24 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using AngleSharp.Dom.Html;
+using System.Collections.Generic;
 using System.Linq;
-using AngleSharp.Dom.Html;
-using WindowsFormsApp1.Core;
 using WindowsFormsApp1.Core.Recepies;
 using WindowsFormsApp1.Core.Servise;
 
-namespace WindowsFormsApp1.Recepies
+namespace WindowsFormsApp1.Core.Edaru
 {
-    class RecipeParser : IParser<string[]>
+    public class EdaParser : IParser<string[]>
     {
-        public RecipeModel ParseData(IHtmlDocument document)
+        public ArborioModel ParseData(IHtmlDocument document)
         {
-            var recipeModel = new RecipeModel();
+            var arborioModel = new ArborioModel();
             var service = new ParserServise();
-            service.InitCollection(recipeModel);
+            service.InitCollection(arborioModel);
 
             var recipe = document.QuerySelector(".hrecipe");
             var items = recipe.QuerySelector(".fn");
 
-            var descriptions= recipe.QuerySelectorAll("span")
+            var descriptions = recipe.QuerySelectorAll("span")
                 .Where(item => item.ClassName != null
                 && item.ClassName.Contains("instruction"));
 
@@ -38,21 +37,21 @@ namespace WindowsFormsApp1.Recepies
                 && item.ParentElement.ClassName.Contains("ingredient"));
                 if (productNumber.Count() == 0)
                 {
-                    recipeModel.Number.Add("");
+                    arborioModel.Number.Add("");
                 }
                 else
                     foreach (var item in productNumber)
                     {
-                        recipeModel.Number.Add(item.TextContent);
+                        arborioModel.Number.Add(item.TextContent);
                     }
-               
+
 
                 var products = ingredient[i].QuerySelectorAll("span")
                     .Where(item => item.ClassName != null
                     && item.ClassName == "name");
                 foreach (var item in products)
                 {
-                    recipeModel.Products.Add(item.TextContent);
+                    arborioModel.Products.Add(item.TextContent);
                 }
 
                 var unitType = ingredient[i].QuerySelectorAll("span")
@@ -60,44 +59,46 @@ namespace WindowsFormsApp1.Recepies
                     && item.ClassName.Contains("type")
                     && item.ParentElement.ClassName != null
                     && item.ParentElement.ClassName.Contains("ingredient"));
-                if (unitType.Count()==0)
+                if (unitType.Count() == 0)
                 {
-                    recipeModel.Units.Add("");
+                    arborioModel.Units.Add("");
                 }
                 else
-                foreach (var item in unitType)
-                {
-                    recipeModel.Units.Add(item.TextContent);
-                }
+                    foreach (var item in unitType)
+                    {
+                        arborioModel.Units.Add(item.TextContent);
+                    }
 
             }
 
             foreach (var item in imageSrc)
             {
-                recipeModel.ImageHref = item.GetAttribute("data-lazy-src");
+                arborioModel.ImageHref = item.GetAttribute("data-lazy-src");
             }
 
-            recipeModel.Name=items.TextContent;
+            arborioModel.Name = items.TextContent;
 
             foreach (var item in descriptions)
             {
-                recipeModel.Description += item.TextContent;
+                arborioModel.Description += item.TextContent;
             }
-             return recipeModel;
+            return arborioModel;
         }
+
 
         public string[] ParseHref(IHtmlDocument document)
         {
             var list = new List<string>();
             var items = document.QuerySelectorAll("a")
-                .Where(item => item.ParentElement.ClassName != null  
-                && item.ParentElement.ClassName.Contains("post__title"));
-            
+                .Where(item => item.ParentElement.ClassName != null
+                && item.ParentElement.ClassName.Contains("horizontal-tile__item-title item-title"));
+
             foreach (var item in items)
             {
                 list.Add(item.GetAttribute("href"));
             }
             return list.ToArray();
         }
+
     }
 }

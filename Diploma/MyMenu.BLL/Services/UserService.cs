@@ -37,11 +37,11 @@ namespace MyMenu.BLL.Services
                 ClientProfile clientProfile = new ClientProfile { Id = user.Id, Name = userDto.Name };
                 Database.ClientManager.Create(clientProfile);
                 await Database.SaveAsync();
-                return new OperationDetails(true, "Succes registration","");
+                return new OperationDetails(true, "Успешная регистрация","");
             }
             else
             {
-                return new OperationDetails(false, "User whith this login already exist", "Email");
+                return new OperationDetails(false, "Пользователь с данным логином уже существует", "Email");
             }
         }
 
@@ -168,7 +168,6 @@ namespace MyMenu.BLL.Services
                 listProducts = listProducts.Intersect(templist);
 
             }
-
 
             var recipes = new List<RecipeDTO>();
             for (int i = 0; i < listProducts.Count(); i++)

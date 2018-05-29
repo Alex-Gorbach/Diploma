@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using WindowsFormsApp1.Core;
 using WindowsFormsApp1.Recepies;
@@ -13,10 +14,18 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             parser = new ParserWorker<string[]>(
-                new RecipeParser()
+                new ArborioParser()
                 );
             parser.OnCompleted += Parser_OnComplated;
             parser.OnNewData += Parser_OnNewData;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            StartPointLabel.Parent = pictureBox1;
+            EndPointLabel.Parent = pictureBox1;
+            StartPointLabel.BackColor = Color.Transparent;
+            EndPointLabel.BackColor = Color.Transparent;
         }
 
         private void Parser_OnComplated(object obj)
@@ -29,17 +38,23 @@ namespace WindowsFormsApp1
             ListTitles.Items.AddRange(args2);
         }
 
-        private void ButtonStart_Click(object sender, EventArgs e)
+
+        private void StartButton_Click(object sender, EventArgs e)
         {
             ListTitles.Items.Clear();
-            parser.Settings=new RecipieSettings((int)NumericStart.Value,(int)NumericEnd.Value);
+            parser.Settings = new ArborioSettings((int)NumericStart.Value, (int)NumericEnd.Value);
             parser.Start();
         }
 
-        private void ButtonAbort_Click(object sender, EventArgs e)
+
+        private void AbortButtonClick(object sender, EventArgs e)
         {
             parser.Abort();
         }
-       
+
+        private void metroLabel2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

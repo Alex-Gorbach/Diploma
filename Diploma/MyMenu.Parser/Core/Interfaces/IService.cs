@@ -7,6 +7,6 @@ namespace WindowsFormsApp1.Core.Servise
     public interface IService
     {
         List<string> SetColllection(List<string> destionation, IEnumerable<IElement> source);
-        void InitCollection(RecipeModel recipeModel);
+        void InitCollection(ArborioModel arborioModel);
     }
 }
