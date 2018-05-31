@@ -20,7 +20,7 @@
                     @Html.ActionLink(@item.Name, "Recipe", "Home", new { id = item.RecipeId }, new { @class = "navbar-brand" })
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RecipeId)
+                    @Html.DisplayFor(modelItem => item.Rank)
                 </td>
                 <td>
                     @Ajax.ActionLink("Удалить", "DeleteRecipeFromUserList", new { recipeId = item.RecipeId },

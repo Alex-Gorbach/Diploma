@@ -30,7 +30,7 @@ namespace WindowsFormsApp1
 
         private void Parser_OnComplated(object obj)
         {
-            MessageBox.Show("All work done!");
+            MessageBox.Show("Выполнено!");
         }
 
         private void Parser_OnNewData(object args1, string[] args2)
@@ -41,9 +41,17 @@ namespace WindowsFormsApp1
 
         private void StartButton_Click(object sender, EventArgs e)
         {
+            var numericStart = NumericStart.Value;
+            var numericEnd = NumericEnd.Value;
+            if(numericStart<= numericEnd) { 
             ListTitles.Items.Clear();
             parser.Settings = new ArborioSettings((int)NumericStart.Value, (int)NumericEnd.Value);
             parser.Start();
+            }
+            else
+            {
+                MessageBox.Show("Начальнаяточка не может быть меньше конечной!");
+            }
         }
 
 

@@ -8,7 +8,7 @@
 <script src="~/Scripts/MicrosoftMvcAjax.js"></script>
 <link href="~/Content/RecipeCss.css" rel="stylesheet" />
 
-<div class="container">
+<div class="container" @*style="position: absolute;"*@>
     <div class="ratings" id="rating" style="display:flex">
         @for (int i = 0; i < Convert.ToInt32(Math.Round(Model.Rank)); i++)
         {
@@ -28,10 +28,10 @@
 
 <script>
     function succesRanked(data) {
-        var elem = document.getElementById("renkStatusForUser").innerHTML="Успешно проголосовано!!!";
+        var elem = document.getElementById("renkStatusForUser").innerHTML ="<p>Успешно проголосовано!</p>";
     }
 
     function failerToRank(errorData) {
-        var elem = document.getElementById("renkStatusForUser").innerHTML = "Вы уже проголосовали.";
+        var elem = document.getElementById("renkStatusForUser").innerHTML = "<p>Вы уже проголосовали.</p>";
     }
 </script>

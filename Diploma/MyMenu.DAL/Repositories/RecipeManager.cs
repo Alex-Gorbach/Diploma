@@ -57,7 +57,7 @@ namespace DAL.Repositories
 
         public List<Recipe> GetTopFiveRanked()
         {
-            var recipes = (from x in Database.Recipes orderby x.Rank select x).Take(5).ToList();
+            var recipes = (from x in Database.Recipes orderby x.Rank ascending select x).Take(5).ToList();
             var result = (from r in recipes orderby r.Rank descending select r).ToList();
             return result;
         }

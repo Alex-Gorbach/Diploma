@@ -49,6 +49,10 @@ namespace MyMenu.WEB.Controllers
         {
             var userId = User.Identity.GetUserId();
             var usersRecipes = UserService.GetUsersRecipes(userId);
+            foreach (var item in usersRecipes)
+            {
+                item.Rank = Math.Round(item.Rank, 1);
+            }
             return PartialView("_UsersRecipesTable", usersRecipes);
         }
 

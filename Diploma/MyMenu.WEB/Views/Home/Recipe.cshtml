@@ -23,6 +23,7 @@
         <div class="recipeInfo">
             <div class="imgDiv">
                 <img class="img-thumbnail" style="width: 65%;" src="@Html.DisplayFor(model => model.ImageHref)" />
+                    @Html.Action("GetRanks", Model);
             </div>
 
             <div class="ingredientsDiv" style="width: 310px;margin-top: 10px;">
@@ -65,7 +66,7 @@
     </div>
     <div class="description">
         <p style="font-size:14px">@Html.DisplayFor(model => model.Description)</p>
-        @Html.Action("GetRanks", Model);
+        @*@Html.Action("GetRanks", Model);*@
     </div>
  
 </body>
@@ -126,7 +127,7 @@
     }
 
     function onuploadfailor(errorData) {
-        alert(errorData);
+       //alert(errorData);
     }
 
 
