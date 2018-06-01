@@ -10,7 +10,7 @@
 
 <div class="container" @*style="position: absolute;"*@>
     <div class="ratings" id="rating" style="display:flex">
-        @for (int i = 0; i < Convert.ToInt32(Math.Round(Model.Rank)); i++)
+        @for (int i = 1; i <= Convert.ToInt32(Math.Round(Model.Rank)); i++)
         {
 
             <div>@Ajax.ActionLink(" ", "SetRankByUser", new { recipeId = Model.RecipeId, recipeRank = i }, new AjaxOptions { UpdateTargetId = "rating", OnSuccess = "succesRanked", OnFailure = "failerToRank", HttpMethod = "GET" }, new { @class = "glyphicon glyphicon-star", @style = "color:#6f7dde" })</div>
@@ -32,6 +32,6 @@
     }
 
     function failerToRank(errorData) {
-        var elem = document.getElementById("renkStatusForUser").innerHTML = "<p>Вы уже проголосовали.</p>";
+        var elem = document.getElementById("renkStatusForUser").innerHTML ="<p>Вы уже проголосовали.</p>";
     }
 </script>

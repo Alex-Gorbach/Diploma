@@ -35,12 +35,14 @@
             </table>
         </div>
 
-        <div id="searchResult"> </div>
+        <div id="searchResult" style="font-size:23px;">
+
+        </div>
 
         <div id="loading"><img style="" src='@Url.Content("~/Content/Load.gif")'></div>
     </div>
 
-  
+
 </body>
 </html>
 
@@ -85,16 +87,22 @@
             success: successFunc,
             error: errorFunc
         });
+        
     });
 
     function successFunc(data, status) {
+        console.log(data);
+        arr = [];
         $('#searchResult').html(data);
         $('div#loading').hide();
     }
 
+
     function errorFunc(errorData) {
+        arr = [];
         var elem = document.getElementById("searchResult");
-        elem.innerHTML = "<h2>По заданному набору продуктов ничего не найдено. &#9785;</h2>";
+        elem.innerHTML = "<label>По заданному набору продуктов ничего не найдено.</label>";
+        $('div#loading').hide();
     }
 
 

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace MyMenu.BLL.Services
 {
-    public class UserService:IUserService
+    public class UserService : IUserService
     {
         IUnitOfWork Database { get; set; }
 
@@ -22,7 +22,7 @@ namespace MyMenu.BLL.Services
         {
             Database = uow;
         }
-        
+
         public async Task<OperationDetails> Create(UserDTO userDto)
         {
             ApplicationUser user = await Database.UserManager.FindByEmailAsync(userDto.Email);
@@ -37,7 +37,7 @@ namespace MyMenu.BLL.Services
                 ClientProfile clientProfile = new ClientProfile { Id = user.Id, Name = userDto.Name };
                 Database.ClientManager.Create(clientProfile);
                 await Database.SaveAsync();
-                return new OperationDetails(true, "Успешная регистрация","");
+                return new OperationDetails(true, "Успешная регистрация", "");
             }
             else
             {
@@ -58,7 +58,7 @@ namespace MyMenu.BLL.Services
 
         public async Task SetInitialData(UserDTO adminDto, List<string> roles)
         {
-            foreach(string roleName in roles)
+            foreach (string roleName in roles)
             {
                 var role = await Database.RoleManager.FindByNameAsync(roleName);
                 if (role == null)
@@ -78,7 +78,7 @@ namespace MyMenu.BLL.Services
 
 
 
-        public List<RecipeDTO> GetAllRecipes(int itemsToSkip,int pageSize)
+        public List<RecipeDTO> GetAllRecipes(int itemsToSkip, int pageSize)
         {
             var recipesId = new List<int>();
             List<Product> productsList = new List<Product>();
@@ -103,9 +103,9 @@ namespace MyMenu.BLL.Services
         public async Task<UserDTO> GetUserByEmail(string email)
         {
             var user = new UserDTO();
-            var result =await Database.UserManager.FindByEmailAsync(email);
+            var result = await Database.UserManager.FindByEmailAsync(email);
             user.Name = result.ClientProfile.Name;
-            
+
             return user;
         }
 
@@ -125,13 +125,13 @@ namespace MyMenu.BLL.Services
         public List<RecipeDTO> GetRecipeByName(string recipeName)
         {
             var recipes = new List<Recipe>();
-     
+
             var result = Database.RecipeManager.GetRecipeByName(recipeName);
             foreach (var item in result)
             {
                 recipes.Add(item);
             }
-            var recipesInfo =new List<RecipeDTO>();
+            var recipesInfo = new List<RecipeDTO>();
             for (int i = 0; i < recipes.Count; i++)
             {
                 var index = recipes.ElementAt(i).RecipeId;
@@ -147,6 +147,7 @@ namespace MyMenu.BLL.Services
         {
             var products = new List<Product>();
             var recipesProducts = new List<Product>();
+            var recipes = new List<RecipeDTO>();
             var productsCount = productsName.Count();
             for (int i = 0; i < productsCount; i++)
             {
@@ -156,28 +157,30 @@ namespace MyMenu.BLL.Services
                     products.Add(item);
                 }
             }
-
-            var recipesId = new List<int>();
-            var productId = products.ElementAt(0).ProductId;
-            var listProducts = Database.RecipeProductManager.GetRecipeIdByProductId(productId).Select(x=>x.RecipeId);
-            for (int i = 1; i < products.Count; i++)
+            if (productsName.Count() == products.Count)
             {
 
-                productId = products.ElementAt(i).ProductId;
-                var templist = Database.RecipeProductManager.GetRecipeIdByProductId(productId).Select(x=>x.RecipeId);
-                listProducts = listProducts.Intersect(templist);
+                var recipesId = new List<int>();
+                var productId = products.ElementAt(0).ProductId;
+                var listProducts = Database.RecipeProductManager.GetRecipeIdByProductId(productId).Select(x => x.RecipeId);
+                for (int i = 0; i < products.Count; i++)
+                {
 
+                    productId = products.ElementAt(i).ProductId;
+                    var templist = Database.RecipeProductManager.GetRecipeIdByProductId(productId).Select(x => x.RecipeId);
+                    listProducts = listProducts.Intersect(templist);
+
+                }
+
+                for (int i = 0; i < listProducts.Count(); i++)
+                {
+                    var recipeId = listProducts.ElementAt(i);
+                    var recipe = GetRecipeById(recipeId);
+                    recipes.Add(recipe);
+                }
             }
-
-            var recipes = new List<RecipeDTO>();
-            for (int i = 0; i < listProducts.Count(); i++)
-            {
-                var recipeId = listProducts.ElementAt(i);
-                var recipe = GetRecipeById(recipeId);
-                recipes.Add(recipe);
-            }
-
             return recipes;
+            
         }
 
         public bool AddRecipeToUserList(string userId, int recipeId)
@@ -187,15 +190,15 @@ namespace MyMenu.BLL.Services
                 Id = userId,
                 RecipeId = recipeId
             };
-            var recipeUser = Database.RecipeClientProfileManager.FindByRecipeAndUserId( userId,  recipeId);
+            var recipeUser = Database.RecipeClientProfileManager.FindByRecipeAndUserId(userId, recipeId);
             if (recipeUser == null)
             {
                 Database.RecipeClientProfileManager.Create(recipeClient);
                 return true;
             }
-           
+
             return false;
-           
+
         }
 
         public bool ChekIfInUsersList(string userId, int recipeId)
@@ -218,12 +221,12 @@ namespace MyMenu.BLL.Services
                 recipes.Add(recipe);
             }
             return recipes;
-            
+
         }
 
         public void DeleteRecipeFromUserList(int recipeId, string userId)
         {
-           var recipeUser= Database.RecipeClientProfileManager.FindByRecipeAndUserId(userId, recipeId);
+            var recipeUser = Database.RecipeClientProfileManager.FindByRecipeAndUserId(userId, recipeId);
             if (recipeUser != null)
             {
                 Database.RecipeClientProfileManager.Remove(recipeUser);
@@ -239,7 +242,7 @@ namespace MyMenu.BLL.Services
                 Rank = recipeRank
             };
             var check = CheckIfCommitRank(userId, recipeId);
-                Database.RankManager.Create(ratingByUser);
+            Database.RankManager.Create(ratingByUser);
             var updatedRank = ComputeRank(recipeId);
             return updatedRank;
         }

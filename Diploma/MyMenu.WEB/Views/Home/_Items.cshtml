@@ -2,37 +2,42 @@
 <link href="~/Content/RecipeCss.css" rel="stylesheet" />
 
 
-@if (Model!=null)
+@if (Model.Count() != 0)
 {
     foreach (var item in Model)
     {
         <div class="recipe">
-        <div class="recipeNameDiv">
-            @Html.ActionLink(@item.Name, "Recipe", "Home", new { id = item.RecipeId }, new { @class = "navbar-brand" })
-        </div>
-        <div class="recipeInfo">
-            <div class="imgDiv">
-                <img class="img-thumbnail" style="width: 285px;height: 359px;" src=@Html.DisplayFor(modelItem => item.ImageHref) />
+            <div class="recipeNameDiv">
+                @Html.ActionLink(@item.Name, "Recipe", "Home", new { id = item.RecipeId }, new { @class = "navbar-brand" })
             </div>
-            <div class="ingredientsDiv">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" style="background-color: #cad8c5;">
-                        <div class="title">Ингредиенты:</div>
-                    </li>
-                    @for (int i = 0; i < item.Products.Count; i++)
-                    {
-                        <li class="list-group-item" style="max-width:300px;min-width:300px">
-                            <div class="ingredient">
-                                <span class="value">@item.ProductCopasity.ElementAt(i)</span>
-                                <span class="type">@item.Products.ElementAt(i).Unit</span>
-                                <span class="name">@item.Products.ElementAt(i).Name</span>
-                            </div>
+            <div class="recipeInfo">
+                <div class="imgDiv">
+                    <img class="img-thumbnail" style="width: 285px;height: 359px;" src=@Html.DisplayFor(modelItem => item.ImageHref) />
+                </div>
+                <div class="ingredientsDiv">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" style="background-color: #cad8c5;">
+                            <div class="title">Ингредиенты:</div>
                         </li>
-                    }
-                </ul>
+                        @for (int i = 0; i < item.Products.Count; i++)
+                        {
+                            <li class="list-group-item" style="max-width:300px;min-width:300px">
+                                <div class="ingredient">
+                                    <span class="value">@item.ProductCopasity.ElementAt(i)</span>
+                                    <span class="type">@item.Products.ElementAt(i).Unit</span>
+                                    <span class="name">@item.Products.ElementAt(i).Name</span>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
             </div>
-        </div>
         </div>
     }
+}
+else
+{
+    @Html.Label("","По заданному набору продуктов ничего не найдено.")
+
 }
 
