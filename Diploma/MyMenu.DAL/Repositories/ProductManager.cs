@@ -26,9 +26,9 @@ namespace DAL.Repositories
             Database.Dispose();
         }
 
-        public List<Product> FindProductByName(string productName)
+        public Product FindProductByName(string productName)
         {
-            var result = Database.Products.Where(x => x.Name == productName).ToList();
+            var result = Database.Products.FirstOrDefault(x => x.Name == productName);
             return result;
         }
 
@@ -69,9 +69,9 @@ namespace DAL.Repositories
             return productCopasity;
         }
 
-        public List<Product> GetProductByName(string productName)
+        public Product GetProductByName(string productName)
         {
-            var result = Database.Products.Where(x => x.Name == productName).ToList();
+            var result = Database.Products.FirstOrDefault(x => x.Name == productName);
             return result;
         }
     }
