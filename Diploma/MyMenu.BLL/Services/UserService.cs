@@ -271,6 +271,12 @@ namespace MyMenu.BLL.Services
             var recipes = Mapper.Map<List<Recipe>, List<RecipeDTO>>(rankedRecipes);
             return recipes;
         }
+
+        public string[] GetProductsName(string val)
+        {
+            var result = Database.ProductManager.GetProductByHalfName(val);
+            return result;
+        }
     }
 
 

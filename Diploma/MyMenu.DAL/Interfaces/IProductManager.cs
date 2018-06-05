@@ -11,5 +11,6 @@ namespace DAL.Interfaces
         List<Product> GetProbuctsById(int id);
         List<string> GetProductsCopasity(int id);
         List<Product> GetProductByName(string productName);
+        string[] GetProductByHalfName(string val);
     }
 }

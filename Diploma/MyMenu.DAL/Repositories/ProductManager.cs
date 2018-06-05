@@ -74,6 +74,12 @@ namespace DAL.Repositories
             var result = Database.Products.Where(x => x.Name == productName).ToList();
             return result;
         }
+
+        public string[] GetProductByHalfName(string val)
+        {
+            var result = (from x in Database.Products where x.Name.Contains(val) select x.Name).ToArray();
+            return result;
+        }
     }
 
 }

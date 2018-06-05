@@ -25,5 +25,6 @@ namespace MyMenu.BLL.Interfaces
         double SetRecipeRank(int recipeId, string userId, double recipeRank);
         bool CheckIfCommitRank(string userId, int recipeId);
         List<RecipeDTO> GetTopFiveRankedRacipes();
+        string[] GetProductsName(string val);
     }
 }
