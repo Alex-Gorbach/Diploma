@@ -33,7 +33,7 @@ namespace WindowsFormsApp1.Core
 
         public async Task<string> GetRecipeByPageHref(string href)
         {
-            var response = await client.GetAsync(href);
+            var response = await client.GetAsync(recipeUrl+href);
             string source = null;
 
             if (response != null && response.StatusCode == HttpStatusCode.OK)

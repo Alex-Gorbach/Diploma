@@ -12,7 +12,7 @@
             </div>
             <div class="recipeInfo">
                 <div class="imgDiv">
-                    <img class="img-thumbnail" style="width: 285px;height: 359px;" src=@Html.DisplayFor(modelItem => item.ImageHref) />
+                    <img class="img-thumbnail" style="width: 285px;height: 296px;" src=@Html.DisplayFor(modelItem => item.ImageHref) />
                 </div>
                 <div class="ingredientsDiv">
                     <ul class="list-group list-group-flush">
@@ -23,9 +23,9 @@
                         {
                             <li class="list-group-item" style="max-width:300px;min-width:300px">
                                 <div class="ingredient">
+                                    <span class="name">@item.Products.ElementAt(i).Name</span>
                                     <span class="value">@item.ProductCopasity.ElementAt(i)</span>
                                     <span class="type">@item.Products.ElementAt(i).Unit</span>
-                                    <span class="name">@item.Products.ElementAt(i).Name</span>
                                 </div>
                             </li>
                         }

@@ -10,8 +10,8 @@ namespace WindowsFormsApp1.Recepies
             EndPoint = end;
         }
 
-        public string BaseUrl { get; set; } = "https://arborio.ru/";
-        public string Prefix { get; set; } = "recepty/page/{CurrentId}";
+        public string BaseUrl { get; set; } = "https://eda.ru/";
+        public string Prefix { get; set; } = "recepty?page={CurrentId}";
         public int StartPoint { get; set; }
         public int EndPoint { get; set; }
     }
