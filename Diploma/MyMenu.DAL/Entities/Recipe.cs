@@ -17,7 +17,6 @@ namespace MyMenu.DAL.Entities
         public double Rank { get; set; }
 
         public virtual ICollection<RecipeClientProfile> RecipeClientProfile { get; set; }
-        public virtual ICollection<RecipeProduct> RecipeProduct { get; set; }
 
     }
 }

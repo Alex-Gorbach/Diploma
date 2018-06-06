@@ -152,10 +152,11 @@ namespace MyMenu.BLL.Services
             for (int i = 0; i < productsCount; i++)
             {
                 var productInfo = Database.ProductManager.GetProductByName(productsName[i]);
-                foreach (var item in productInfo)
-                {
-                    products.Add(item);
-                }
+                products.Add(productInfo);
+                //foreach (var item in productInfo)
+                //{
+                //    products.Add(item);
+                //}
             }
             if (productsName.Count() == products.Count)
             {

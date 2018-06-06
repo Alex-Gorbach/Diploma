@@ -12,8 +12,5 @@ namespace MyMenu.DAL.Entities
         public string Name { get; set; }
         public string Unit { get; set; }
 
-        public virtual ICollection<RecipeProduct> RecipeProduct { get; set; }
-
-
     }
 }

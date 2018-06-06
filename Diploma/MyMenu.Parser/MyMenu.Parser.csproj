@@ -80,10 +80,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
-    <Compile Include="Core\Arborio\HrefsModel.cs" />
->>>>>>> 8a282ff13e5b32d821ea932e9db606234c1168ef
     <Compile Include="Core\HtmlLoader.cs" />
     <Compile Include="Core\IParser.cs" />
     <Compile Include="Core\IParserSettings.cs" />
