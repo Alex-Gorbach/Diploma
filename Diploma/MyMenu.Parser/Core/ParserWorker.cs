@@ -101,7 +101,7 @@ namespace WindowsFormsApp1.Core
                         var recipeSource = await loader.GetRecipeByPageHref(resultHref[j]);
                         var recipeDocument = await domParser.ParseAsync(recipeSource);
                         var resulRecipe = parser.ParseData(recipeDocument);
-                        if (resulRecipe!= null)
+                        if (resulRecipe.Description!= null)
                         {
                             resulRecipe.ImageHref = resltimgHrefs[j];
                             await dataServise.Create(resulRecipe);
