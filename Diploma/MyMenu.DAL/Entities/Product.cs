@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyMenu.DAL.Entities
@@ -10,6 +11,8 @@ namespace MyMenu.DAL.Entities
 
         public string Name { get; set; }
         public string Unit { get; set; }
+
+        public virtual ICollection<RecipeProduct> RecipeProduct { get; set; }
 
 
     }

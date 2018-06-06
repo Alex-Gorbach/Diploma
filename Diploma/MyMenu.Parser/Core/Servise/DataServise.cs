@@ -32,7 +32,7 @@ namespace WindowsFormsApp1.Core.Servise
             var product = new Product();
 
             RecipeProduct recipeProduct;
-            List<Product> products = null;
+            Product productFind = null;
             var result = Database.RecipeManager.GetRecipeByName(arborioModel.Name);
             if (result.Count == 0)
             {
@@ -57,13 +57,13 @@ namespace WindowsFormsApp1.Core.Servise
 
                 for (int i = 0; i < arborioModel.Products.Count; i++)
                 {
-                    products = Database.ProductManager.FindProductByName(arborioModel.Products[i]);
-                    if (products.Count != 0)
+                    productFind = Database.ProductManager.FindProductByName(arborioModel.Products[i]);
+                    if (productFind != null)
                     {
                         recipeProduct = new RecipeProduct()
                         {
                             RecipeId = recipe.RecipeId,
-                            ProductId = products[0].ProductId,
+                            ProductId = productFind.ProductId,
 
                         };
                         if (arborioModel.Units.Count >= i)
@@ -86,8 +86,9 @@ namespace WindowsFormsApp1.Core.Servise
                         recipeProduct.Number = arborioModel.Number[i];
                         Database.RecipeProductManager.Create(recipeProduct);
                     }
+                    await Database.SaveAsync();
                 }
-                await Database.SaveAsync();
+                
             }
 
         }
