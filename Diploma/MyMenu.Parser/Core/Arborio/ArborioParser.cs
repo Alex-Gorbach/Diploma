@@ -4,7 +4,7 @@ using System.Linq;
 using AngleSharp.Dom.Html;
 using Newtonsoft.Json.Linq;
 using WindowsFormsApp1.Core;
-using WindowsFormsApp1.Core.Arborio;
+//using WindowsFormsApp1.Core.Arborio;
 
 using WindowsFormsApp1.Core.Recepies;
 using WindowsFormsApp1.Core.Servise;
@@ -17,7 +17,7 @@ namespace WindowsFormsApp1.Recepies
         public ArborioModel ParseData(IHtmlDocument document)
         {
             var recipe = document.QuerySelector(".main-content");
-            var arborioModel = new ArborioModel();
+             var arborioModel = new ArborioModel();
             if (recipe != null)
             {
                
@@ -82,7 +82,7 @@ namespace WindowsFormsApp1.Recepies
 
         public string[] ParseHref(IHtmlDocument document)
         {
-            var hrefModel = new HrefsModel();
+         
             var pageHrefs = new List<string>();
 
             var items = document.QuerySelectorAll("a")
