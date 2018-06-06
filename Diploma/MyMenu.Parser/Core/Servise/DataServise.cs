@@ -74,7 +74,7 @@ namespace WindowsFormsApp1.Core.Servise
                     else
                     {
                         product.Name = arborioModel.Products[i];
-                        product.Unit = arborioModel.Units[i];
+                        //product.Unit = arborioModel.Units[i];
                         Database.ProductManager.Create(product);
 
                         recipeProduct = new RecipeProduct()

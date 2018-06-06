@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using BLL.DTO;
 using System.Collections.Generic;
 using System;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace MyMenu.WEB.Controllers
 {
@@ -49,6 +51,13 @@ namespace MyMenu.WEB.Controllers
         {
             var result = UserService.GetRecipeByProductsName(searchStr);
             return PartialView("_Items", result);
+        }
+
+        public JsonResult GetSuggestProducts(string val)
+        {
+            var result = UserService.GetProductsName(val);
+            string json = JsonConvert.SerializeObject(result);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult SearchRecipeByName(string search)

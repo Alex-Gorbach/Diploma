@@ -12,7 +12,11 @@
             </div>
             <div class="recipeInfo">
                 <div class="imgDiv">
+<<<<<<< HEAD
+                    <img class="img-thumbnail" style="width: 285px;height: 296px;" src=@Html.DisplayFor(modelItem => item.ImageHref) />
+=======
                     <img class="img-thumbnail" style="width: 285px;height: 359px;" src=@Html.DisplayFor(modelItem => item.ImageHref) />
+>>>>>>> e8d836d... fix advenced searching
                 </div>
                 <div class="ingredientsDiv">
                     <ul class="list-group list-group-flush">
@@ -23,9 +27,15 @@
                         {
                             <li class="list-group-item" style="max-width:300px;min-width:300px">
                                 <div class="ingredient">
+<<<<<<< HEAD
+                                    <span class="name">@item.Products.ElementAt(i).Name</span>
+                                    <span class="value">@item.ProductCopasity.ElementAt(i)</span>
+                                    <span class="type">@item.Products.ElementAt(i).Unit</span>
+=======
                                     <span class="value">@item.ProductCopasity.ElementAt(i)</span>
                                     <span class="type">@item.Products.ElementAt(i).Unit</span>
                                     <span class="name">@item.Products.ElementAt(i).Name</span>
+>>>>>>> e8d836d... fix advenced searching
                                 </div>
                             </li>
                         }

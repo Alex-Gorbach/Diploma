@@ -90,16 +90,23 @@ namespace WindowsFormsApp1.Core
 
                 var document = await domParser.ParseAsync(source);
                 var result = parser.ParseHref(document);
+                var imgHrefs = parser.ParseImageHrefs(document);
+                var resltimgHrefs = imgHrefs as string[];
 
                 var resultHref = result as string[];
 
-                for (int j = 0; j < resultHref.Length; j++)
-                {
-                    var recipeSource = await loader.GetRecipeByPageHref(resultHref[j]);
-                    var recipeDocument = await domParser.ParseAsync(recipeSource);
-                    var resulRecipe = parser.ParseData(recipeDocument);
-                    await dataServise.Create(resulRecipe);
-                }
+                if (resltimgHrefs.Length == resultHref.Length)
+                    for (int j = 0; j < resultHref.Length; j++)
+                    {
+                        var recipeSource = await loader.GetRecipeByPageHref(resultHref[j]);
+                        var recipeDocument = await domParser.ParseAsync(recipeSource);
+                        var resulRecipe = parser.ParseData(recipeDocument);
+                        if (resulRecipe!= null)
+                        {
+                            resulRecipe.ImageHref = resltimgHrefs[j];
+                            await dataServise.Create(resulRecipe);
+                        }
+                    }
 
 
                 OnNewData?.Invoke(this, result);
