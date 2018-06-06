@@ -23,7 +23,11 @@
         <div class="recipeInfo">
             <div class="imgDiv">
                 <img class="img-thumbnail" style="width: 65%;" src="@Html.DisplayFor(model => model.ImageHref)" />
+                @if (User.Identity.IsAuthenticated)
+                {
                     @Html.Action("GetRanks", Model);
+                }
+
             </div>
 
             <div class="ingredientsDiv" style="width: 310px;margin-top: 10px;">
@@ -33,14 +37,15 @@
                     </li>
                     @for (int i = 0; i < Model.Products.Count; i++)
                     {
-                    <li class="list-group-item" style="max-width:300px;min-width:300px">
+                        <li class="list-group-item" style="max-width:300px;min-width:300px">
 
-                        <div class="ingredients">
-                            <span class="value">@Model.ProductCopasity.ElementAt(i)</span>
-                            <span class="type">@Model.Products.ElementAt(i).Unit</span>
-                            <span class="name">@Model.Products.ElementAt(i).Name</span>
-                        </div>
-                    </li>
+                            <div class="ingredients">
+
+                                <span class="name">@Model.Products.ElementAt(i).Name</span>
+                                <span class="value">@Model.ProductCopasity.ElementAt(i)</span>
+                                <span class="type">@Model.Products.ElementAt(i).Unit</span>
+                            </div>
+                        </li>
                     }
                 </ul>
                 @if (User.Identity.IsAuthenticated)
@@ -50,9 +55,9 @@
                     new AjaxOptions { OnSuccess = "onuploadsuccess", OnFailure = "onuploadfailor", HttpMethod = "POST" },
                     new { enctype = "multipart/form-data" }))
                     {
-                    <div class="statusRecipe" style="display:flex;">
-                        <input type="submit" style=" font-size: 17px;" class="btn btn-primary btn-sm" id="addToListButton" value="Добавить в список" />
-                    </div>
+                        <div class="statusRecipe" style="display:flex;">
+                            <input type="submit" style=" font-size: 17px;" class="btn btn-primary btn-sm" id="addToListButton" value="Добавить в список" />
+                        </div>
                     }
 
                 }
@@ -68,7 +73,7 @@
         <p style="font-size:14px">@Html.DisplayFor(model => model.Description)</p>
         @*@Html.Action("GetRanks", Model);*@
     </div>
- 
+
 </body>
 </html>
 
@@ -108,7 +113,7 @@
             },
             error: errorFunc
         });
-       
+
     }
 
     function alreadyInList(data) {
@@ -127,7 +132,7 @@
     }
 
     function onuploadfailor(errorData) {
-       //alert(errorData);
+        //alert(errorData);
     }
 
 
