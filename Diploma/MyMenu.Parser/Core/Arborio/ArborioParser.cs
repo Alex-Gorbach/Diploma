@@ -4,8 +4,6 @@ using System.Linq;
 using AngleSharp.Dom.Html;
 using Newtonsoft.Json.Linq;
 using WindowsFormsApp1.Core;
-//using WindowsFormsApp1.Core.Arborio;
-
 using WindowsFormsApp1.Core.Recepies;
 using WindowsFormsApp1.Core.Servise;
 
@@ -73,7 +71,7 @@ namespace WindowsFormsApp1.Recepies
             var imageHrefs = new List<string>();
             foreach (var item in image)
             {
-                var parsHref = item.GetAttribute("data-src").Replace("c285x285", "c620x500"); ;
+                var parsHref = item.GetAttribute("data-src").Replace("c285x285", "c620x500");
 
                 imageHrefs.Add(parsHref);
             }
@@ -90,14 +88,10 @@ namespace WindowsFormsApp1.Recepies
                 && item.ParentElement.ClassName.Contains("horizontal-tile__item-title item-title")
                 && item.FirstElementChild.ClassName != "item-title__special item-title__special_logo"
                 && item.FirstElementChild.ClassName != "item-title__special item-title__special_crown");
-
-
-
             foreach (var item in items)
             {
                 pageHrefs.Add(item.GetAttribute("href"));
             }
-
 
             return pageHrefs.ToArray();
         }

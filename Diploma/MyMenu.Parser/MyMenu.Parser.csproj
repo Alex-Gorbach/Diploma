@@ -80,6 +80,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Edimdoma\EdimdomaModel.cs" />
+    <Compile Include="Core\Edimdoma\EdimdomaParser.cs" />
+    <Compile Include="Core\Edimdoma\EdimdomaSettings.cs" />
     <Compile Include="Core\HtmlLoader.cs" />
     <Compile Include="Core\IParser.cs" />
     <Compile Include="Core\IParserSettings.cs" />
@@ -134,5 +137,6 @@
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

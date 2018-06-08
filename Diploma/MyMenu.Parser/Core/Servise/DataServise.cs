@@ -18,7 +18,7 @@ namespace WindowsFormsApp1.Core.Servise
         }
         public DataServise()
         {
-            Database = new IdentityUnitOfWork("MyMenuContext");
+            Database = new IdentityUnitOfWork("YourMenuComtext");
         }
 
         public async Task Create(ArborioModel arborioModel)
