@@ -37,6 +37,8 @@
             this.ListTitles = new System.Windows.Forms.ListBox();
             this.StartPointLabel = new System.Windows.Forms.Label();
             this.EndPointLabel = new System.Windows.Forms.Label();
+            this.SitesToParse = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericStart)).BeginInit();
@@ -48,14 +50,14 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(0, -1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(593, 406);
+            this.pictureBox1.Size = new System.Drawing.Size(612, 406);
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
             // NumericEnd
             // 
             this.NumericEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumericEnd.Location = new System.Drawing.Point(429, 104);
+            this.NumericEnd.Location = new System.Drawing.Point(442, 104);
             this.NumericEnd.Minimum = new decimal(new int[] {
             1,
             0,
@@ -73,7 +75,7 @@
             // NumericStart
             // 
             this.NumericStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumericStart.Location = new System.Drawing.Point(429, 36);
+            this.NumericStart.Location = new System.Drawing.Point(442, 34);
             this.NumericStart.Name = "NumericStart";
             this.NumericStart.Size = new System.Drawing.Size(137, 29);
             this.NumericStart.TabIndex = 14;
@@ -85,7 +87,7 @@
             // 
             // metroButton1
             // 
-            this.metroButton1.Location = new System.Drawing.Point(429, 224);
+            this.metroButton1.Location = new System.Drawing.Point(442, 224);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(137, 52);
             this.metroButton1.TabIndex = 19;
@@ -94,7 +96,7 @@
             // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(429, 150);
+            this.metroButton2.Location = new System.Drawing.Point(442, 150);
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(137, 50);
             this.metroButton2.TabIndex = 18;
@@ -113,7 +115,7 @@
             // 
             this.StartPointLabel.AutoSize = true;
             this.StartPointLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StartPointLabel.Location = new System.Drawing.Point(428, 9);
+            this.StartPointLabel.Location = new System.Drawing.Point(438, 7);
             this.StartPointLabel.Name = "StartPointLabel";
             this.StartPointLabel.Size = new System.Drawing.Size(128, 24);
             this.StartPointLabel.TabIndex = 21;
@@ -123,18 +125,44 @@
             // 
             this.EndPointLabel.AutoSize = true;
             this.EndPointLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EndPointLabel.Location = new System.Drawing.Point(428, 77);
+            this.EndPointLabel.Location = new System.Drawing.Point(438, 77);
             this.EndPointLabel.Name = "EndPointLabel";
             this.EndPointLabel.Size = new System.Drawing.Size(161, 24);
             this.EndPointLabel.TabIndex = 22;
             this.EndPointLabel.Text = "Точка остановки";
+            // 
+            // SitesToParse
+            // 
+            this.SitesToParse.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SitesToParse.FormattingEnabled = true;
+            this.SitesToParse.Items.AddRange(new object[] {
+            "--Все--",
+            "Eda.ru",
+            "Povar.ru"});
+            this.SitesToParse.Location = new System.Drawing.Point(442, 318);
+            this.SitesToParse.Name = "SitesToParse";
+            this.SitesToParse.Size = new System.Drawing.Size(137, 28);
+            this.SitesToParse.TabIndex = 23;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(438, 291);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(167, 24);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Источник данных";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(593, 404);
+            this.ClientSize = new System.Drawing.Size(609, 404);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.SitesToParse);
             this.Controls.Add(this.EndPointLabel);
             this.Controls.Add(this.StartPointLabel);
             this.Controls.Add(this.ListTitles);
@@ -163,6 +191,8 @@
         private System.Windows.Forms.ListBox ListTitles;
         private System.Windows.Forms.Label StartPointLabel;
         private System.Windows.Forms.Label EndPointLabel;
+        private System.Windows.Forms.ComboBox SitesToParse;
+        private System.Windows.Forms.Label label1;
     }
 }
 
