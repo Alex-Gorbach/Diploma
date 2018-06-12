@@ -2,14 +2,13 @@
 
 
 <script src="~/Scripts/jquery-1.10.2.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 <script src="~/Scripts/MicrosoftAjax.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/MicrosoftMvcAjax.js"></script>
 <link href="~/Content/RecipeCss.css" rel="stylesheet" />
 
 <div class="container" @*style="position: absolute;"*@>
-    <div class="ratings" id="rating" style="display:flex;font-size: 23px;">
+    <div class="ratings" id="rating" style="display:flex;font-size: 23px; max-width: 294px;">
 
         @for (int i = 1; i <= Convert.ToInt32(Math.Round(Model.Rank)); i++)
         {
@@ -28,7 +27,7 @@
 </div>
 
 <script>
-    function succesRanked(data) {
+    function succesRanked(data,status) {
         var elem = document.getElementById("renkStatusForUser").innerHTML ="<p>Успешно проголосовано!</p>";
     }
 
