@@ -21,17 +21,17 @@ namespace WindowsFormsApp1.Recepies
                
                 var service = new ParserServise();
                 service.InitCollection(arborioModel);
-
-                var descriptions = recipe.QuerySelectorAll("ul")
-                    .Where(item => item.ClassName != null
-                    && item.ClassName.Contains("recipe__steps"));
-
-                foreach (var item in descriptions)
+                var descriptions = recipe.QuerySelector(".recipe__steps");
+                if (descriptions != null)
                 {
-                    arborioModel.Description += item.TextContent;
+                    var descriptinfo = descriptions.QuerySelectorAll("li").Where(
+                        item => item.ClassName.Contains("instruction"));
+                    foreach (var item in descriptinfo)
+                    {
+                        arborioModel.Description += item.QuerySelector(".instruction__description").TextContent;
+                    }
                 }
-
-                var consist = document.QuerySelector("html body.layout.narrow-view.g-desktop div.wrapper-sel section.main-content.layout__container.js-main-content section.recipe.js-portions-count-parent.js-recipe div.g-relative.js-responsive-banner-relative div.ingredients-list.layout__content-col");
+                var consist = document.QuerySelector(".ingredients-list__content");
                 var ingredient = consist.QuerySelectorAll("p")
                     .Where(item => item.ParentElement.ClassName != null
                     && item.ParentElement.ClassName.Contains("ingredients-list__content")
@@ -53,7 +53,7 @@ namespace WindowsFormsApp1.Recepies
                 }
                 arborioModel.Number = productsAmount;
                 arborioModel.Products = productsNames;
-                arborioModel.Name = recipe.QuerySelector(".recipe__name").TextContent;
+                arborioModel.Name = recipe.QuerySelector(".recipe__name").TextContent+"\n";
                 arborioModel.Units = productsAmount;
             }
             return arborioModel;

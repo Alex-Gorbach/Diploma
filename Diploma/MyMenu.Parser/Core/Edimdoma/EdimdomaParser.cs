@@ -23,11 +23,10 @@ namespace WindowsFormsApp1.Core.Edimdoma
                 var recipeName = recipe.QuerySelector( ".detailed" ).TextContent;
                 arborioModel.Name = recipeName;
                
-                var descriptions = recipe.QuerySelector( ".cont_area > div:nth-child(28)" );
+                var descriptions = recipe.QuerySelector("[itemprop=recipeInstructions]");
                 if (descriptions != null) {
                     var descriptinfo = descriptions.QuerySelectorAll( "div" ).Where(
-                        item => item.ClassName != ""
-                       && item.ClassName == "detailed_step_description_big" );
+                        item =>  item.ClassName == "detailed_step_description_big" );
                     foreach (var item in descriptinfo)
                     {
                         arborioModel.Description += item.TextContent + "\n";
